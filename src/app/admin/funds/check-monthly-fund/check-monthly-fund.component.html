@@ -1,0 +1,56 @@
+<div class="container">
+    <h3>Add Check Monthly Fund - {{monthlyFund}}/- </h3>
+    
+     <md-card class="example-card">
+
+            <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+                    <label for="">Select Units</label>
+                    <div *ngFor="let data of units">
+                            <input  type="checkbox" (change)="onChange(data._id, $event.target.checked)"> {{data.unit_no}}<br>
+                        </div>
+
+                    <!-- <div *ngFor="let data of emails">
+                        <input  type="checkbox" (change)="onChange(data.email, $event.target.checked)"> {{data.email}}<br>
+                    </div> -->
+                    <br>
+
+
+
+                    <md-input-container class="example-full-width">
+                        <input mdInput placeholder="Purpose" [formControl]="purpose">
+                        <md-error *ngIf="purpose.hasError('required')">
+                            Purpose is <strong>required</strong>
+                        </md-error>
+                    </md-input-container>
+
+                    <div class="form-group">
+                        <md-select formControlName="month" placeholder="Month">
+                          <md-option disabled >Select</md-option>
+                          <md-option *ngFor="let month of months" value= {{month._id}}>{{month.month}}</md-option>
+                      </md-select>
+                        <md-error *ngIf="month.hasError('required')">
+                          Month is <strong>required</strong>
+                      </md-error>
+                      </div>
+                      <div class="form-group">
+                        <md-select formControlName="year" placeholder=" Year">
+                          <md-option disabled >Select</md-option>
+                          <md-option *ngFor="let year of years" value= {{year._id}}>{{year.year}}</md-option>
+                      </md-select><md-error *ngIf="year.hasError('required')">
+                        Year is <strong>required</strong>
+                     </md-error> 
+                   </div>
+                <br><br>
+              
+                  
+                    <button md-raised-button type="submit" [disabled]="!myForm.valid">Add Monthly Fund</button> 
+                    
+                </form>
+                <!-- <pre>Form values: {{myForm.value | json}}</pre> -->
+                
+            </md-card>
+  </div>
+    
+  
+  
+  

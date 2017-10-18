@@ -1,0 +1,43 @@
+<div class="container">
+  <h2>Add Apartment</h2>
+  <form class="example-form" [formGroup]="apartmentForm" (ngSubmit)="onFormSubmit()">
+  
+  
+    <md-card class="example-card">
+  
+  
+  
+    <md-input-container class="example-full-width">
+      <input mdInput placeholder="code" [formControl]="code">
+      
+    <md-error *ngIf="code.hasError('required')">
+      Code is <strong>required</strong>
+      </md-error>
+    </md-input-container>
+
+    <md-input-container class="example-full-width">
+      <input mdInput placeholder="Name" [formControl]="name">
+      
+    <md-error *ngIf="name.hasError('required')">
+      Name is <strong>required</strong>
+      </md-error>
+    </md-input-container>
+
+    <md-input-container class="example-full-width">
+      <input mdInput placeholder="Address" [formControl]="address">
+      
+    <md-error *ngIf="address.hasError('required')">
+      Address is <strong>required</strong>
+      </md-error>
+    </md-input-container>
+
+  
+  
+  
+
+    <button md-raised-button type="submit"  [disabled]="!apartmentForm.valid">Add Apartment</button> 
+  </md-card>
+    <!-- </div> -->
+    </form>
+  </div>
+  

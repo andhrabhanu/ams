@@ -1,0 +1,97 @@
+<div class="container">
+        <h3>Add Owner</h3>
+        
+         <md-card class="example-card">
+            <form (ngSubmit)="onSubmit()" #ownerForm="ngForm">
+                <div class="row">
+                  <div class="col-md-6">
+                  <div class="form-group">
+                      <label for="name">Owner Name</label>
+                      <input type="text" class="form-control" id="requestTitle" required minlength="5" maxlength="30" [(ngModel)]="model.name" name="name" #name="ngModel">
+                      
+                        <div *ngIf="name.errors && (name.dirty || name.touched)" class="alert alert-danger">
+                          <div [hidden]="!name.errors.required">
+                            Name is required!
+                          </div>
+                        </div>
+                  <div>
+                  </div>
+                  </div>
+                  </div>
+                  <div class="col-md-6">
+                  <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" required minlength="5" maxlength="50" [(ngModel)]="model.email" name="email" #email="ngModel">
+                        <div *ngIf="email.errors && (email.dirty || email.touched)" class="alert alert-danger">
+                                <div [hidden]="!email.errors.required">
+                                  Email is required!
+                                </div>
+                      </div>
+                      
+            
+            
+                  </div>
+                  </div>
+                  </div>
+                  <div class="row">
+                  <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="text" class="form-control" id="password" required minlength="5" maxlength="30" [(ngModel)]="model.password" name="password" #password="ngModel">
+                    <div *ngIf="password.errors && (password.dirty || password.touched)" class="alert alert-danger">
+                      <div [hidden]="!password.errors.required">
+                            password is required!
+                      </div>
+                      <div [hidden]="!password.errors.minlength">
+                            password must be at least 5 characters long.
+                      </div>
+                      <div [hidden]="!password.errors.maxlength">
+                            password cannot be more than 30 characters long.
+                      </div>
+                    </div>     
+                    </div>
+                  </div>
+            
+            
+            
+                  
+                  <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="mobile">Mobile</label>
+                    <input type="mobile" class="form-control" id="mobile" required minlength="5" maxlength="50" [(ngModel)]="model.mobile" name="mobile" #mobile="ngModel">
+                    
+                      <div *ngIf="mobile.errors && (mobile.dirty || mobile.touched)" class="alert alert-danger">
+                          <div [hidden]="!mobile.errors.required">
+                                Mobile is required!
+                          </div>
+                      </div>
+            
+            
+                      
+            
+                  </div>
+                  </div>
+                  <div class="form-group">
+                  <label for="address">Address</label>
+                  <textarea class="form-control" rows="8"[(ngModel)]="model.address" name="address" #address="ngModel">
+                  </textarea>
+      
+                    </div>
+            
+                  </div>
+            
+                  <angular2-multiselect [data]="dropdownList" [(ngModel)]="selectedItems"
+                   [ngModelOptions]="{standalone: true}"
+                  [settings]="dropdownSettings" 
+                  (onSelect)="onItemSelect($event)" 
+                  (onDeSelect)="OnItemDeSelect($event)"
+                  (onSelectAll)="onSelectAll($event)"
+                  (onDeSelectAll)="onDeSelectAll($event)"></angular2-multiselect>
+            
+                  <button [disabled]="!ownerForm.form.valid"  type="submit">Add Owner</button>
+            </form>   
+         </md-card>
+</div>
+        
+
+

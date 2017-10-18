@@ -1,0 +1,44 @@
+<div class="container">
+  <h2>Owners</h2> {{myunits}}
+  <div class="example-container mat-elevation-z8">
+    <div class="example-header">
+      <md-input-container floatPlaceholder="never">
+        <input mdInput #filter placeholder="Filter Owners">
+      </md-input-container>
+    </div>
+  
+    <md-table #table [dataSource]="dataSource">
+  
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+  
+      <!-- ID Column -->
+      <ng-container cdkColumnDef="id">
+        <md-header-cell *cdkHeaderCellDef> ID </md-header-cell>
+       <md-cell *cdkCellDef="let row"><a href="https://www.w3schools.com"> {{row.id}}</a> </md-cell>
+      </ng-container>
+  
+    <!-- Property Column -->
+      <ng-container cdkColumnDef="name">
+        <md-header-cell *cdkHeaderCellDef> Name </md-header-cell>
+        <md-cell *cdkCellDef="let row">
+     
+        <a routerLink="#" routerLinkActive="active">{{row.name}}</a>
+  
+        </md-cell>
+      </ng-container>
+  
+      <ng-container cdkColumnDef="email">
+        <md-header-cell *cdkHeaderCellDef> Email </md-header-cell>
+        <md-cell *cdkCellDef="let row">{{row.email}} </md-cell>
+      </ng-container>
+
+      <ng-container cdkColumnDef="unit_no">
+        <md-header-cell *cdkHeaderCellDef> Unit </md-header-cell>
+        <md-cell *cdkCellDef="let row">{{row.unit_no}} </md-cell>
+      </ng-container>
+    <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
+      <md-row *cdkRowDef="let row; columns: displayedColumns;"></md-row>
+    </md-table>
+  </div>
+  </div>

@@ -1,0 +1,4 @@
+<a *ngIf="!managerService.loggedIn()" routerLink="/manager/manager-register" routerLinkActive="active"><button md-menu-item> Register  </button></a>
+<a *ngIf="!managerService.loggedIn()"routerLink="/manager/manager-login" routerLinkActive="active"><button md-menu-item> Login  </button></a>
+<app-manager-navbar *ngIf="managerService.loggedIn()"></app-manager-navbar>
+<router-outlet></router-outlet>	

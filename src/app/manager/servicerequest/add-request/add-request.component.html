@@ -1,0 +1,102 @@
+<div class="container">
+<h3>Add Request</h3>
+
+ <md-card class="example-card">
+<form (ngSubmit)="onSubmit()" #requestForm="ngForm">
+    <div class="row">
+      <div class="col-md-6">
+      <div class="form-group">
+          <label>Select Property:</label> 
+          <select  class="form-control" id="property" required (change)="onSelect(model.property)" [(ngModel)]="model.property" name="property" #property="ngModel">         
+              <option *ngFor="let property of properties" value= {{property._id}}>{{property.name}}</option>
+          </select>  
+            <div *ngIf="property.errors && (property.dirty || property.touched)" class="alert alert-danger">
+              <div [hidden]="!property.errors.required">
+                Property is required!
+              </div>
+            </div>
+            <span class="help-block">Select the Property this Support Request is for.</span> 
+      <div>
+      </div>
+      </div>
+      </div>
+      <div class="col-md-6">
+      <div class="form-group">
+        <label>Select Tenant:</label> 
+        <select  class="form-control" id="tenant" required  [(ngModel)]="model.tenant" name="tenant" #tenant="ngModel">         
+              <option *ngIf="objsize == 0" value="0">UnLeased Property</option>  
+              <option *ngFor="let tenant of selectedTenants" value= {{tenant._id}}>{{tenant.firstName}}</option>
+          </select>  
+          <div *ngIf="tenant.errors && (tenant.dirty || tenant.touched)" class="alert alert-danger">
+            <div [hidden]="!tenant.errors.required">
+              Tenant is required!
+            </div>
+          </div>
+
+
+          <span class="help-block">Select the Tenant.</span>
+      </div>
+      </div>
+      </div>
+      <div class="row">
+      <div class="col-md-6">
+      <div class="form-group">
+        <label for="requestTitle">Request Title</label>
+        <input type="text" class="form-control" id="requestTitle" required minlength="5" maxlength="30" [(ngModel)]="model.requestTitle" name="requestTitle" #requestTitle="ngModel">
+        <div *ngIf="requestTitle.errors && (requestTitle.dirty || requestTitle.touched)" class="alert alert-danger">
+          <div [hidden]="!requestTitle.errors.required">
+            Request title is required!
+          </div>
+          <div [hidden]="!requestTitle.errors.minlength">
+            Request must be at least 5 characters long.
+          </div>
+          <div [hidden]="!requestTitle.errors.maxlength">
+            Request cannot be more than 100 characters long.
+          </div>
+        </div>     
+        </div>
+      </div>
+
+
+
+      
+      <div class="col-md-6">
+      <div class="form-group">
+        <label for="requestPriority">Priority</label>
+        <select  class="form-control" id="priority" required  [(ngModel)]="model.priority" name="priority" #priority="ngModel">         
+            <option value= "Normal">Normal</option>
+            <option value= "Important">Important</option>
+            <option value= "Urgent">Urgent</option>
+          </select> 
+          <div *ngIf="priority.errors && (priority.dirty || priority.touched)" class="alert alert-danger">
+              <div [hidden]="!priority.errors.required">
+                  Priority is required!
+              </div>
+          </div>
+
+
+          
+
+      </div>
+      </div>
+      <div class="form-group">
+      <label for="description">Request Description</label>
+      <textarea class="form-control" rows="8"[(ngModel)]="model.description" name="description" #description="ngModel">
+      </textarea>
+      <span class="help-block">Please be as detailed as possible.</span>
+      <!--     <div *ngIf="description.errors && (description.dirty || description.touched)" class="alert alert-danger">
+            <div [hidden]="!description.errors.required">
+              Description is required!
+            </div>
+        
+          </div> -->
+        </div>
+
+      </div>
+
+
+
+      <button [disabled]="!requestForm.form.valid" md-fab type="submit"><md-icon>check</md-icon></button>
+</form>   
+ </md-card>
+</div>

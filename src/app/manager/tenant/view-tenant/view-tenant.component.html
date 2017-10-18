@@ -1,0 +1,399 @@
+<script src="http://tejoma.com/reside/js/dataTables.js"></script>
+<div class="container page_block noTopBorder">
+  <hr class="mt-0 mb-0">
+
+          <h3>View Tenant Account</h3>
+  
+      <div class="row">
+        <div class="col-md-4">
+          <div class="profileBox">
+            <div class="cover">
+            <!--   <div class="profilePic">
+                <img src="../avatars/userDefault.png" class="publicPic">
+              </div> -->
+            </div>
+
+            <div class="profileBody">
+              <h1>
+                {{main_firstName}} {{main_lastName}}								</h1>
+              <p class="lead">{{main_email}}</p>
+             
+              <p  *ngIf="is_Leased == 0" class="lead">UnLeased Tenant</p>
+              <p  *ngIf="is_Leased == !0" class="lead">Leased Tenant</p>
+              <p>
+                {{main_primaryphone}}<br>
+                Enabled Tenant<br>
+                Member Since: {{ Tenant_from | date:'dd-MMMM-yyyy' }} <br>
+                Last Sign In: None	</p>
+            </div>
+          </div>
+          
+            <ul class="list-group" *ngIf="is_Leased == !0">
+                <li class="list-group-item">
+                  
+                  <strong>Leased Property:</strong>
+                  <a routerLink="/manager/properties/view-property/{{propertyUniqueId}}" routerLinkActive="active">{{propertyName}}</a>
+                  
+                  <!-- <a href="index.php?action=viewProperty&amp;propertyId=1" 
+                  data-toggle="tooltip" data-placement="top" title="" data-original-title="View Property">
+                      {{propertyName}}										</a> -->
+                </li>
+                <li class="list-group-item">
+                    <strong>Lease Term:</strong> {{leaseTerm}}<br>
+                    <small>{{ leaseStart | date:'dd-MMM-yyyy' }}  to  {{ leaseEnd | date:'dd-MMM-yyyy' }}</small>
+                    
+                  </li>
+              </ul>
+                    </div>
+        <div class="col-md-8">
+          <div class="tabs mt-0">
+              <md-tab-group>
+                  <md-tab label="Account">
+                      <h3>Manage the Tenant's Account Info</h3>
+                      <hr>
+                      <form class="example-form" [formGroup]="tenantAccountForm" (ngSubmit)="UpdateAccountInfo()">
+                          
+                     <md-input-container class="example-full-width">
+                          <input mdInput placeholder="FirstName" [formControl]="firstName">
+                          
+                        <md-error *ngIf="firstName.hasError('required')">
+                            firstName is <strong>required</strong>
+                          </md-error>
+                      </md-input-container>
+                      <md-input-container class="example-full-width">
+                          <input mdInput placeholder="lastName" [formControl]="lastName">
+                          
+                        <md-error *ngIf="lastName.hasError('required')">
+                            lastName is <strong>required</strong>
+                          </md-error>
+                      </md-input-container>
+
+                      <md-input-container class="example-full-width">
+                          <input mdInput placeholder="primary_phone" [formControl]="primary_phone">
+                          
+                        <md-error *ngIf="primary_phone.hasError('required')">
+                            Primary Phone is <strong>required</strong>
+                          </md-error>
+                      </md-input-container>
+
+                      <md-input-container class="example-full-width">
+                          <input mdInput placeholder="alt_phone" [formControl]="alt_phone">
+                          
+                        <md-error *ngIf="alt_phone.hasError('required')">
+                            Alt Phone is <strong>required</strong>
+                          </md-error>
+                      </md-input-container>
+                      <!-- <button md-raised-button type="submit"  [disabled]="!tenantForm.valid">Save Changes</button> --> 
+                      <button md-fab type="submit"  [disabled]="!tenantAccountForm.valid"><md-icon>check</md-icon></button>
+                      
+                      <br><br>
+                      </form>
+                  </md-tab>
+
+                  <md-tab label="Email">
+                      <h3>Change the Tenant's Account Email</h3>
+                      <hr>
+                      <form class="example-form" [formGroup]="tenantEmailForm" (ngSubmit)="UpdateEmailInfo()">
+                      <md-input-container class="example-full-width">
+                          <input mdInput placeholder="Email" [formControl]="email">
+                            <md-error *ngIf="email.hasError('required')">
+                            Email is <strong>required</strong>
+                          </md-error>
+                      </md-input-container>
+
+                      <md-input-container class="example-full-width">
+                          <input mdInput placeholder="New Email" [formControl]="new_email">
+                          <!-- <md-error *ngIf="new_email.hasError('required')">
+                            Email is <strong>required</strong>
+                          </md-error> -->
+                      </md-input-container>
+                      <button md-fab type="submit"  [disabled]="!tenantEmailForm.valid"><md-icon>check</md-icon></button>
+                      </form>
+
+                      <br>
+
+                  </md-tab>
+                  <md-tab label="Password">
+                      <h3>Change the Tenant's Account Password</h3>
+                      <form [formGroup]="passwordForm">
+                      <md-input-container class="example-full-width">
+                          <!-- <input mdInput placeholder="Password" [formControl]="password"> -->
+                          <input mdInput type="password" [(ngModel)]="password" [formControl]="passwordForm.controls['password']" placeholder="Password">
+                          
+                          <!-- <md-error *ngIf="new_email.hasError('required')">
+                            Email is <strong>required</strong>
+                          </md-error> -->
+                      </md-input-container>
+
+
+                      <md-input-container class="example-full-width">
+                        <input mdInput type="password" [(ngModel)]="confirmPassword" formControlName="confirmPassword"  placeholder="Confirm Password">
+                         <!-- <md-error *ngIf="new_email.hasError('required')">
+                            Email is <strong>required</strong>
+                          </md-error> -->
+                      </md-input-container>
+                           <!-- <button  ion-button block round color="secondary" (click)="register();">Signup</button> -->
+                         <!--  <button type="button" class="btn btn-default" (click)="UpdatePassword();">Default</button> -->
+                        <button md-fab type="button" (click)="UpdatePassword();" ><md-icon>check</md-icon></button>
+                        <hr>
+                      </form>
+                  </md-tab>
+                  <!-- <md-tab label="Avatar">Content 2</md-tab> -->
+
+                  <md-tab label="Account Status">
+                      <h3>Change Tenants Account Status</h3>
+                      <hr>
+                      <p>The Tenant's Account Status can only be changed when they do NOT have an Active Property Lease.
+                         Resident Accounts can be changed at any time, regardless of their Lease status.</p>
+
+                  </md-tab>
+                  <md-tab label="Notes">
+                      <form class="example-form" [formGroup]="addNotesForm" (ngSubmit)="AddNotesTenant()">
+                          
+                    <h3>Manage the Tenant's Internal Notes</h3>
+                     <hr>
+                      <md-input-container class="example-full-width">
+                          <textarea mdInput placeholder="Notes" [formControl]="notes"></textarea>
+                          <md-error *ngIf="notes.hasError('required')">
+                              Notes is <strong>required</strong>
+                            </md-error>
+                           
+                       </md-input-container>
+                       <br><br>
+                       <button md-fab type="submit"  [disabled]="!addNotesForm.valid"><md-icon>check</md-icon></button>
+                       <br>
+                      </form>
+                  </md-tab>
+                  <md-tab label="Documents">
+                    <h3>Manage Documents for this Tenant</h3>
+                  </md-tab>
+                  
+                </md-tab-group>
+         <!--    <ul class="tabsBody">
+              <li class="active">
+                <h4 class="tabHeader" tabindex="0">Account</h4>
+                <section class="tabContent" id="account">
+                  <h3>Manage the Tenant's Account Info</h3>
+                  <form action="" method="post" class="form-horizontal">
+                    <div class="form-group">
+                      <label for="userFirstName" class="col-sm-3 control-label">Tenant First Name</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control" name="userFirstName" id="userFirstName" required="required" value="Rushil">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="userLastName" class="col-sm-3 control-label">Tenant Last Name</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control" name="userLastName" id="userLastName" required="required" value="Singh">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="primaryPhone" class="col-sm-3 control-label">Primary Phone</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control" name="primaryPhone" id="primaryPhone" required="required" value="9123456789">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="altPhone" class="col-sm-3 control-label">Alternate Phone</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control" name="altPhone" id="altPhone" value="9123456789">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="userAddress" class="col-sm-3 control-label">Mailing Address</label>
+                      <div class="col-sm-9">
+                        <textarea class="form-control" name="userAddress" id="userAddress" required="required" rows="3"></textarea>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="location" class="col-sm-3 control-label">Location</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control" name="location" id="location" value="Washington, DC">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="pets" class="col-sm-3 control-label">Pets</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control" name="pets" id="pets" value="">
+                      </div>
+                    </div>
+                    
+                    <div class="form-group">
+                      <div class="col-sm-offset-3 col-sm-9">
+                        <button type="input" name="submit" value="accInfo" class="btn btn-success btn-icon"><i class="fa fa-check-square-o"></i> Save Changes</button>
+                      </div>
+                    </div>
+                  </form>
+                </section>
+              </li>
+              <li class="">
+                <h4 class="tabHeader" tabindex="0">Email</h4>
+                <section class="tabContent" id="email">
+                  <h3>Change the Tenant's Account Email</h3>
+                  <form action="" method="post" class="form-horizontal">
+                    <div class="form-group">
+                      <label for="currEmail" class="col-sm-3 control-label">Tenant's Current Email</label>
+                      <div class="col-sm-9">
+                        <input type="text" class="form-control" disabled="" value="rushilsingh004@gmail.com">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="newEmail" class="col-sm-3 control-label">Tenant's New Email</label>
+                      <div class="col-sm-9">
+                        <input type="email" class="form-control" name="newEmail" id="newEmail" required="required" value="">
+                        <span class="help-block">A Valid email. Used for logging in and notifications.</span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="newEmailr" class="col-sm-3 control-label">Repeat Tenant's Email</label>
+                      <div class="col-sm-9">
+                        <input type="email" class="form-control" name="newEmailr" id="newEmailr" required="required" value="">
+                        <span class="help-block">Type the new email address again. Emails MUST Match.</span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="col-sm-offset-3 col-sm-9">
+                        <input type="hidden" name="tenantsName" value="Rushil Singh">
+                        <button type="input" name="submit" value="accEmail" class="btn btn-success btn-icon"><i class="fa fa-check-square-o"></i> Save Changes</button>
+                      </div>
+                    </div>
+                  </form>
+                </section>
+              </li>
+              <li class="">
+                <h4 class="tabHeader" tabindex="0">Password</h4>
+                <section class="tabContent" id="password">
+                  <h3>'s Email Tenant's Account Password</h3>
+                  <form action="" method="post" class="form-horizontal">
+                    <div class="form-group">
+                      <label for="password" class="col-sm-3 control-label">New Password</label>
+                      <div class="col-sm-9">
+                        <input type="password" class="form-control" name="password" id="password" required="required" value="">
+                        <span class="help-block">Type a new Password for the Tenant's Account.</span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="password_r" class="col-sm-3 control-label">Repeat Password</label>
+                      <div class="col-sm-9">
+                        <input type="password" class="form-control" name="password_r" id="password_r" required="required" value="">
+                        <span class="help-block">Type the new password again. Passwords MUST Match.</span>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="col-sm-offset-3 col-sm-9">
+                        <input type="hidden" name="passwordOld" value="5TDlBYHhp6z58XohxrS82nlogPk+IsjpqnaLJwmqxMQ=">
+                        <input type="hidden" name="tenantsName" value="Rushil Singh">
+                        <button type="input" name="submit" value="cngePass" class="btn btn-success btn-icon"><i class="fa fa-check-square-o"></i> Save Changes</button>
+                      </div>
+                    </div>
+                  </form>
+                </section>
+              </li>
+              <li class="">
+                <h4 class="tabHeader" tabindex="0">Avatar</h4>
+                <section class="tabContent" id="avatar">
+                  <h3>Manage the Tenant's Profile Avatar</h3>
+                                        <p>The Tenant does not have a custom Avatar uploaded at this time.</p>
+                                    </section>
+              </li>
+              <li class="">
+                <h4 class="tabHeader" tabindex="0">Account Status</h4>
+                <section class="tabContent" id="status">
+                  <h3>Change the Tenant 's Account Status</h3>
+                                        <p>The Tenant's Account Status can only be changed when they do NOT have an Active Property Lease. Resident Accounts can be changed at any time,
+                                      regardless of their Lease status.</p>
+                                    </section>
+              </li>
+              <li class="">
+                <h4 class="tabHeader" tabindex="0">Notes</h4>
+                <section class="tabContent" id="notes">
+                  <h3>Manage the Tenant's Internal Notes</h3>
+                  <form action="" method="post" class="form-horizontal">
+                    <div class="form-group">
+                      <label for="userAddress" class="col-sm-3 control-label">Internal Notes</label>
+                      <div class="col-sm-9">
+                        <textarea class="form-control" name="notes" id="notes" rows="8"></textarea>
+                        <span class="help-block">Internal Notes. The Tenant can not see these notes.</span>
+                      </div>
+                    </div>
+                    
+                    <div class="form-group">
+                      <div class="col-sm-offset-3 col-sm-9">
+                        <input type="hidden" name="tenantsName" value="Rushil Singh">
+                        <button type="input" name="submit" value="tenNotes" class="btn btn-success btn-icon"><i class="fa fa-check-square-o"></i> Save Changes</button>
+                      </div>
+                    </div>
+                  </form>
+                </section>
+              </li>
+              <li class="">
+                <h4 class="tabHeader" tabindex="0">Documents</h4>
+                <section class="tabContent" id="documents">
+                  <h3>Manage Documents for this Tenant</h3>
+                  <p class="text-right">
+                    <a data-toggle="modal" href="#uploadDoc" class="btn btn-success btn-xs btn-icon mb-10"><i class="fa fa-upload"></i> Upload a Document</a>
+                  </p>
+                  
+                  <div class="modal fade" id="uploadDoc" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fa fa-times"></i></span></button>
+                          <h4 class="modal-title">Upload a Document for this Tenant</h4>
+                        </div>
+                        <form enctype="multipart/form-data" action="" method="post">
+                          <div class="modal-body">
+                            <p>
+                              <small>
+                                Upload File types allowed: jpg, png, gif, txt, pdf, xls, xlsx, doc, docx, zip, rar<br>
+                                Max Upload File Size: 512 mb.
+                              </small>
+                            </p>
+
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <label for="docTitle">Document Title</label>
+                                  <input type="text" class="form-control" name="docTitle" id="docTitle" required="required" maxlength="50" value="">
+                                  <span class="help-block">Short Title for the Document.</span>
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <label for="docDesc">Document Description</label>
+                                  <input type="text" class="form-control" name="docDesc" id="docDesc" required="required" value="">
+                                  <span class="help-block">Short description of the Document.</span>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="form-group">
+                              <label for="file">Select Document</label>
+                              <input type="file" id="file" name="file">
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <input type="hidden" name="userFolder" value="rushil_singh_17146895">
+                            <input type="hidden" name="tenantsName" value="Rushil Singh">
+                            <button type="input" name="submit" value="uploadDoc" class="btn btn-success btn-icon"><i class="fa fa-check-square-o"></i> Upload Document</button>
+                            <button type="button" class="btn btn-default btn-icon" data-dismiss="modal"><i class="fa fa-times-circle-o"></i> Cancel</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                  
+                                        <div class="alertMsg default mb-20">
+                      <div class="msgIcon pull-left">
+                        <i class="fa fa-info-circle"></i>
+                      </div>
+                      No Uploaded Documents found for this Tenant.
+                    </div>
+                                    </section>
+              </li>
+            </ul> -->
+          </div>
+        </div>
+      </div>
+  
+    </div>

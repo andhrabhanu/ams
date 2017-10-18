@@ -1,0 +1,27 @@
+<div class="container">
+  <h2>View Floor</h2>
+  <form class="example-form" [formGroup]="floorForm" (ngSubmit)="updateFloor()">
+  
+  
+    <md-card class="example-card">
+  
+  
+  
+    <md-input-container class="example-full-width">
+      <input mdInput placeholder="Floor" [formControl]="floor_no">
+      
+    <md-error *ngIf="floor_no.hasError('required')">
+      Floor No is <strong>required</strong>
+      </md-error>
+    </md-input-container>
+
+  
+  
+  
+
+    <button md-raised-button type="submit"  [disabled]="!floorForm.valid">Update Floor</button> 
+  </md-card>
+    <!-- </div> -->
+    </form>
+  </div>
+  

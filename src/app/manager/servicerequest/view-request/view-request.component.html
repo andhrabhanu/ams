@@ -1,0 +1,202 @@
+<div class="container">
+<h3>View Service Request</h3>
+<!-- Edit Request -->
+<app-edit-request [(visible)]="showDialog">
+  <form class="example-form" [formGroup]="requestForm" (ngSubmit)="UpdateRequest()">
+        
+        <div class="modal-header">
+              <h4 class="modal-title">Edit Service Request</h4>
+          </div>
+        <div class="row">
+          <div class="col-md-4">
+              <md-input-container class="example-full-width">
+                  <input mdInput placeholder="RequestTitle" [formControl]="frequestTitle">
+                  
+                <md-error *ngIf="frequestTitle.hasError('required')">
+                    Request Title is <strong>required</strong>
+                  </md-error>
+                </md-input-container>
+           <!--  <div class="form-group">
+              <label for="requestTitle">Request Title</label>
+              <input type="text" class="form-control" name="requestTitle" id="requestTitle" required="required" value="Fix Electrical panel">
+            </div> -->
+      </div>
+
+      <div class="col-md-4">
+            <!-- <div class="form-group">
+              <label for="requestPriority">Priority</label>
+              <select class="form-control" name="requestPriority">
+                <option value="1">Normal</option>
+                <option value="2">Important</option>
+                <option value="3">Urgent</option>									
+              </select>
+             </div> -->
+           <!--   <md-select formControlName="frequestPriority" placeholder="Priority">
+                <md-option disabled >Select</md-option>
+                <md-option value="Normal">Normal</md-option>
+                <md-option value="Important">Important</md-option>
+                <md-option value="Urgent">Urgent</md-option>
+             </md-select> -->
+
+             <br>
+
+             <md-select formControlName="frequestPriority" placeholder="Request Prority">
+                <md-option disabled >Select</md-option>
+                <md-option value="Normal">Normal</md-option>
+                <md-option value="Important">Important</md-option>
+                <md-option value="Urgent">Urgent</md-option>
+            </md-select>
+             
+        </div>
+      <div class="col-md-4">
+            <div class="form-group">
+            <!--   <label for="requestStatus">Status</label>
+              <select class="form-control" name="requestStatus">
+                <option value="1">New</option>
+                <option value="2">In Progress</option>
+                <option value="3">Waiting for Parts</option>
+                <option value="4">On Hold</option>
+                <option value="5">Waiting for Tenant</option>
+                <option value="6">Closed</option>
+                <option value="7">Work Completed</option>
+                <option value="8">Closed - No Work Needed</option>
+                <option value="9">Reopened</option>
+                <option value="10">Needs Follow-up</option>	
+              </select> -->
+
+              <br>
+              <md-select formControlName="frequestStatus" placeholder="Request Status">
+                  <md-option disabled >Select</md-option>
+                  <md-option value="New">New</md-option>
+                  <md-option value="In Progress">In Progress</md-option>
+                  <md-option value="Waiting for Parts">Waiting for Parts</md-option>
+                  <md-option value="On Hold">On Hold</md-option>
+                  <md-option value="Waiting for Tenant">Waiting for Tenant</md-option>
+                  <md-option value="Closed">Closed</md-option>
+                  <md-option value="Work Completed">Work Completed</md-option>
+                  <md-option value="Closed - No Work Needed">Closed - No Work Needed</md-option>
+                  <md-option value="Reopened">Reopened</md-option>
+                  <md-option value="Needs Follow-up">Needs Follow-up</md-option>	
+              </md-select>
+              
+            </div>
+        </div>
+
+       
+
+      
+    </div>
+    <div class="form-group">
+        
+        <!-- <textarea class="form-control" name="requestText" id="requestText" required="required" rows="8">The electrical panel is rusted and falling off. I guess it needs to be replaced.</textarea>
+        <span class="help-block">Please be as detailed as possible.</span> -->
+        <md-input-container class="example-full-width">
+            <textarea mdInput placeholder="Request Description" [formControl]="frequestText" rows="4"></textarea>
+             <md-error *ngIf="frequestText.hasError('required')">
+                Request Description is <strong>required</strong>
+             </md-error>
+         </md-input-container>
+      </div>
+      
+          <button type="input" name="submit" value="editRequest" class="btn btn-success btn-icon"><i class="fa fa-check-square-o"></i> Update</button>
+      
+  </form>      
+</app-edit-request>
+
+<!-- Assign Request -->
+<app-assign-request [(visible)]="showDialog1">
+  <h2>Assign Request</h2>
+  <form (ngSubmit)="onAssigRequest()" #assignForm="ngForm">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+            <label>Select Service Category:</label> 
+            <select  class="form-control" id="serviceCategory" required (change)="onSelectforResource(model.serviceCategory)" [(ngModel)]="model.serviceCategory" name="serviceCategory" #serviceCategory="ngModel">         
+                <option *ngFor="let serviceCategory of serviceCategories" value= {{serviceCategory._id}}>{{serviceCategory.name}}</option>
+            </select>
+            <div *ngIf="serviceCategory.errors && (serviceCategory.dirty || serviceCategory.touched)" class="alert alert-danger">
+                <div [hidden]="!serviceCategory.errors.required">
+                    ServiceCategory is required!
+                </div>
+            </div>
+            <span class="help-block">Select the Service Category</span> 
+            
+        </div>  
+      </div>
+      <div class="col-md-6">
+          <div class="form-group">
+              <label>Select Resource:</label> 
+              <select  class="form-control" id="serviceResource" required  [(ngModel)]="model.serviceResource" name="serviceResource" #serviceResource="ngModel">         
+                  <option *ngFor="let serviceResource of selectedServiceResources" value= {{serviceResource._id}}>{{serviceResource.name}}</option>
+              </select>
+              <div *ngIf="serviceResource.errors && (serviceResource.dirty || serviceResource.touched)" class="alert alert-danger">
+                  <div [hidden]="!serviceResource.errors.required">
+                    Service Resource  is required!
+                  </div>
+              </div>
+              <span class="help-block">Select the Resource to assign Request.</span> 
+              
+          </div> 
+          <button type="input" name="submit" value="assignRequest" class="btn btn-success btn-icon"><i class="fa fa-clipboard"></i> Assign Request</button>
+          
+        </div>  
+    </div>  
+  </form>
+
+</app-assign-request>
+
+
+
+
+
+ <md-card class="example-card">
+  <div class="row mb-10">
+    <div class="col-md-4">
+      <ul class="list-group">
+        <li class="list-group-item"><strong>Request:</strong> {{requestTitle}}</li>
+        <li class="list-group-item"><strong>Property:</strong>
+          <a href="index.php?action=viewProperty&amp;propertyId=1" data-toggle="tooltip" data-placement="top" title="" data-original-title="View Property">
+           {{propertyName}}								</a>
+        </li>
+        <li class="list-group-item"><strong>Priority: </strong> {{requestPriority}}</li>
+        <li class="list-group-item"><strong>Status: </strong> {{requestStatus}}</li>
+        <li class="list-group-item"><strong>Assigned To: </strong> <em>Unassigned</em></li>
+        <li class="list-group-item"><strong>Request Date: </strong> {{requestDate}}</li>
+        <li class="list-group-item"><strong>Requested By: </strong>
+          Bhanu Chava							</li>
+                    </ul>
+                </div>
+    <div class="col-md-8">
+      <md-tab-group>
+        <md-tab label="Request">
+          <h3>Service Request</h3>
+           
+          <div class="well well-sm">
+            <p class="lead mb-0">{{requestText}}.</p>
+          </div>
+          <a href="#" target="_blank" class="btn btn-xs btn-default btn-icon"><i class="fa fa-clipboard"></i> Print Work Order</a>
+          <!-- <a href="#" class="btn btn-xs btn-default btn-icon"><i class="fa fa-pencil"></i> Edit Request</a> -->
+          <button (click)="showDialog = !showDialog" class="btn btn-xs btn-default btn-icon"><i class="fa fa-pencil"></i>Edit Request</button>
+          <button (click)="showDialog1 = !showDialog1" class="btn btn-xs btn-default btn-icon"><i class="fa fa-clipboard"></i>Assign Request</button>
+          
+          
+          <!-- <a href="#" class="btn btn-xs btn-default btn-icon"><i class="fa fa-clipboard"></i> Assign Request</a> -->
+          <a href="#" class="btn btn-xs btn-default btn-icon"><i class="fa fa-check"></i> Close Request</a>
+        </md-tab>
+        <md-tab label="Notes">
+          <h1>Some more tab content</h1>
+          <p>...</p>
+        </md-tab>
+        <md-tab label="Expenses">
+          <h1>Some more tab content</h1>
+          <p>...</p>
+        </md-tab>
+      </md-tab-group>
+    </div>
+  </div>
+
+
+
+   
+ </md-card>
+</div>

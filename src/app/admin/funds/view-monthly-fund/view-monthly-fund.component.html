@@ -1,0 +1,25 @@
+<div class="container">
+  <h2>View Monthly Fund for {{month}}-{{year}}</h2>
+  <md-card class="example-card">
+    <form (ngSubmit)="onSubmit()" #monthlyFundForm="ngForm">
+        <div class="row">
+          <div class="col-md-6">
+          <div class="form-group">
+              <label for="name">Paid Units</label>
+              
+            
+          <div>
+          </div>
+          </div>
+          </div>
+         
+          </div>
+      
+    
+
+    
+          <button [disabled]="!monthlyFundForm.form.valid"  type="submit">Add Owner</button>
+    </form>   
+ </md-card>
+  </div>
+  

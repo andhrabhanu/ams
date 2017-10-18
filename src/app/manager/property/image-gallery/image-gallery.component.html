@@ -1,0 +1,36 @@
+<div class="modal fade" id="selectedImageModal" >
+	  <div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+						
+							<div class="selectedImage" *ngIf="selectedImage">
+										<img src="http://localhost:8080/public/uploads/{{selectedImage}}" style="width:100%">
+												<div class="btn-back">
+										<i class="fa fa-arrow-left" (click)=navigate(false) aria-hidden="true"></i>
+							</div>
+							<div class="btn-forward">
+											<i class="fa fa-arrow-right" (click)=navigate(true) aria-hidden="true"></i>
+
+							</div>
+							<div class="modal-footer">
+								<a data-toggle="modal" (click)="Delete(selectedImage)" href="{{selectedImage}}" class="btn btn-danger btn-icon" data-dismiss="modal"><i class="fa fa-trash" ></i> Delete Picture</a>
+								<button type="button"   class="btn btn-default btn-icon" data-dismiss="modal"><i class="fa fa-times-circle-o"></i> Cancel</button>
+							</div>
+								
+						</div>
+					</div>
+		</div>
+			</div>
+	</div>
+	 <!-- <p>{{datasourceId}}</p> -->
+
+
+			<ul id="thumbnailsList">
+				
+				<li *ngFor="let image of datasource" >
+						<img src="http://localhost:8080/public/uploads/{{image}}" class="tn"
+					width="191" height="146"  
+					data-toggle="modal" data-target="#selectedImageModal"
+										(click)=setSelectedImage(image)>
+				</li>
+			</ul>

@@ -1,0 +1,23 @@
+<div class="container">
+  <h2>Add Month</h2>
+  <form class="example-form" [formGroup]="monthForm" (ngSubmit)="onFormSubmit()">
+  
+  
+    <md-card class="example-card">
+  
+  
+  
+    <md-input-container class="example-full-width">
+      <input mdInput placeholder="month" [formControl]="month">
+      
+    <md-error *ngIf="month.hasError('required')">
+      Month is <strong>required</strong>
+      </md-error>
+    </md-input-container>
+
+    <button md-raised-button type="submit"  [disabled]="!monthForm.valid">Add Month</button> 
+  </md-card>
+    <!-- </div> -->
+    </form>
+  </div>
+  

@@ -1,0 +1,10 @@
+<app-navbar-admin *ngIf="adminService.loggedIn()"></app-navbar-admin>
+
+		<app-login *ngIf="!adminService.loggedIn()"></app-login>
+		
+		
+
+
+
+	  <router-outlet></router-outlet>	
+	

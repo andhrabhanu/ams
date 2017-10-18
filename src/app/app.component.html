@@ -1,0 +1,7 @@
+ <md-toolbar *ngIf="!adminService.loggedIn() && !superAdminService.loggedIn()"  color="primary">
+		<button  md-button (click)="gotoHome();"> Home</button>
+		<button  md-button (click)="GoToAdmin();"> Admin</button>
+		
+	</md-toolbar>
+		
+  <router-outlet></router-outlet>	

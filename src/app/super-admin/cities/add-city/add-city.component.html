@@ -1,0 +1,15 @@
+<div class="container">
+        <h2>Add City</h2>
+        <form class="example-form" [formGroup]="cityForm" (ngSubmit)="onFormSubmit()">
+          <md-card class="example-card">
+            <md-input-container class="example-full-width">
+              <input mdInput placeholder="City" [formControl]="city">
+              <md-error *ngIf="city.hasError('required')">
+                City is <strong>required</strong>
+              </md-error>
+            </md-input-container>
+            <button md-raised-button type="submit"  [disabled]="!cityForm.valid">Add City</button> 
+          </md-card>
+        </form>
+</div>
+  

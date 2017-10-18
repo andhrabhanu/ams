@@ -1,0 +1,53 @@
+<div class="container">
+    <h3>Complaint from {{ownerName}} - {{complaintDate | date:'dd-MMMM-yyyy'}}
+
+      <div *ngFor="let unit of ownerUnits">
+       {{unit.itemName}}
+      </div> 
+
+
+    </h3>
+    <form class="example-form" [formGroup]="complaintForm" (ngSubmit)="closeComplaint()">
+    
+    
+      <md-card class="example-card">
+
+  
+        
+      <md-input-container class="example-full-width">
+        <input mdInput placeholder="Title" [formControl]="title">
+        <md-error *ngIf="title.hasError('required')">
+       Title is <strong>required</strong>
+        </md-error>
+      </md-input-container>
+
+      <md-input-container class="example-full-width">
+        <input mdInput placeholder="Description" [formControl]="description">
+        <md-error *ngIf="description.hasError('required')">
+          Description is <strong>required</strong>
+        </md-error>
+      </md-input-container>
+
+
+
+     
+
+      <div *ngIf="complaintstatus == 0; then thenBlock else elseBlock"></div>
+      <ng-template #thenBlock>      <md-input-container class="example-full-width">
+        <input mdInput placeholder="Reply" [formControl]="reply">
+        <md-error *ngIf="reply.hasError('required')">
+          Reply is <strong>required</strong>
+        </md-error>
+      </md-input-container><button md-raised-button type="submit"  [disabled]="!complaintForm.valid">Close Complaint</button></ng-template>
+      <ng-template #elseBlock><p><b>The Complaint is already closed <br>
+        <hr>
+        Reply - {{getreply}}</b></p></ng-template> 
+    
+
+  
+      
+    </md-card>
+      <!-- </div> -->
+      </form>
+    </div>
+    

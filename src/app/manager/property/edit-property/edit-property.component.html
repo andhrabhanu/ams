@@ -1,0 +1,170 @@
+<div class="container">
+<h2>Edit Property -  {{propertyName}} </h2>
+<form class="example-form" [formGroup]="propertyForm" (ngSubmit)="onFormSubmit()">
+   <md-card class="example-card">
+  <md-input-container class="example-full-width">
+    <input mdInput placeholder="Name" [formControl]="name">
+    
+  <md-error *ngIf="name.hasError('required')">
+      Name is <strong>required</strong>
+    </md-error>
+  </md-input-container>
+ <md-input-container class="example-full-width">
+     <textarea mdInput placeholder="Address" [formControl]="address"></textarea>
+      <md-error *ngIf="address.hasError('required')">
+      Address is <strong>required</strong>
+      </md-error>
+  </md-input-container>
+
+  <md-input-container class="example-full-width">
+     <textarea mdInput placeholder="Description" [formControl]="desc"></textarea>
+      <md-error *ngIf="desc.hasError('required')">
+      Description is <strong>required</strong>
+      </md-error>
+  </md-input-container>
+
+  <md-input-container class="example-full-width">
+    <input mdInput placeholder="Rental Rate" [formControl]="rate">
+    <md-error *ngIf="rate.hasError('required')">
+      Rental Rate is <strong>required</strong>
+    </md-error>
+  </md-input-container>
+
+  <md-input-container class="example-full-width">
+    <input mdInput placeholder="Rental Deposit" [formControl]="deposit">
+    <md-error *ngIf="deposit.hasError('required')">
+      Rental Deposit is <strong>required</strong>
+    </md-error>
+  </md-input-container>
+
+  <md-input-container class="example-full-width">
+    <input mdInput placeholder="Late Fee" [formControl]="latepenalty">
+    <md-error *ngIf="latepenalty.hasError('required')">
+      Late Fee is <strong>required</strong>
+    </md-error>
+  </md-input-container>
+
+  <md-input-container class="example-full-width">
+    <input mdInput placeholder="Type" [formControl]="type">
+    <md-error *ngIf="type.hasError('required')">
+      Type is <strong>required</strong>
+    </md-error>
+  </md-input-container>
+
+
+
+  <md-input-container class="example-full-width">
+    <input mdInput placeholder="Style" [formControl]="style">
+    <md-error *ngIf="style.hasError('required')">
+      Style is <strong>required</strong>
+    </md-error>
+  </md-input-container>
+
+
+  <md-input-container class="example-full-width">
+    <input mdInput placeholder="Year Built" [formControl]="yearBuilt">
+    <md-error *ngIf="yearBuilt.hasError('required')">
+      Year Built is <strong>required</strong>
+    </md-error>
+  </md-input-container>
+
+  <md-input-container class="example-full-width">
+    <input mdInput placeholder="Amenities" [formControl]="amenities">
+    <md-error *ngIf="amenities.hasError('required')">
+      Amenities is <strong>required</strong>
+    </md-error>
+  </md-input-container>
+
+  <md-input-container class="example-full-width">
+    <input mdInput placeholder="Heating" [formControl]="heating">
+    <md-error *ngIf="heating.hasError('required')">
+      Heating is <strong>required</strong>
+    </md-error>
+  </md-input-container>
+
+  <md-input-container class="example-full-width">
+    <input mdInput placeholder="Property Size" [formControl]="size">
+    <md-error *ngIf="size.hasError('required')">
+      Property Size is <strong>required</strong>
+    </md-error>
+  </md-input-container>
+
+  <md-select formControlName="bedrooms" placeholder="BedRooms">
+    <md-option disabled >Select</md-option>
+    <md-option value="1">1</md-option>
+    <md-option value="2">2 </md-option>
+    <md-option value="3">3 </md-option>
+    <md-option value="4">4 </md-option>
+    <md-option value="5">5 </md-option>
+  </md-select>
+   
+ <md-select formControlName="bathrooms" placeholder="Bathrooms">
+    <md-option disabled >Select</md-option>
+    <md-option value="1">1</md-option>
+    <md-option value="2">2 </md-option>
+    <md-option value="3">3 </md-option>
+    <md-option value="4">4 </md-option>
+    <md-option value="5">5 </md-option>
+  </md-select>
+
+   <md-select formControlName="petsAllowed" placeholder="Pets Allowed">
+     <md-option disabled >Select</md-option>
+    <md-option value="0">No</md-option>
+    <md-option value="1">Yes </md-option>
+  </md-select>
+  
+  
+
+  <md-input-container class="example-full-width">
+        <input mdInput placeholder="Parking " [formControl]="parking">
+         <md-error *ngIf="parking.hasError('required')">
+          Parking  is <strong>required</strong>
+        </md-error>
+  </md-input-container>
+
+  <md-input-container class="example-full-width">
+        <input mdInput placeholder="Association Name " [formControl]="hoaName">
+         <md-error *ngIf="hoaName.hasError('required')">
+          Association name is <strong>required</strong>
+        </md-error>
+  </md-input-container>
+
+  <md-input-container class="example-full-width">
+        <input mdInput placeholder="Association Address " [formControl]="hoaAddress">
+         <md-error *ngIf="hoaAddress.hasError('required')">
+          Association Address  is <strong>required</strong>
+        </md-error>
+  </md-input-container>
+  
+  <md-input-container class="example-full-width">
+        <input mdInput placeholder="Association Phone " [formControl]="hoaPhone">
+         <md-error *ngIf="hoaPhone.hasError('required')">
+          Association Phone  is <strong>required</strong>
+        </md-error>
+  </md-input-container>
+   
+  <md-input-container class="example-full-width">
+        <input mdInput placeholder="Association Fee " [formControl]="hoaFee">
+         <md-error *ngIf="hoaFee.hasError('required')">
+          Association Fee  is <strong>required</strong>
+        </md-error>
+  </md-input-container>
+
+  <md-input-container class="example-full-width">
+        <input mdInput placeholder="Fee Schedule " [formControl]="feeSchedule">
+         <md-error *ngIf="feeSchedule.hasError('required')">
+          Fee Schedule  is <strong>required</strong>
+        </md-error>
+  </md-input-container>
+  
+  <md-input-container class="example-full-width">
+        <input mdInput placeholder="GoogleMap" [formControl]="map">
+      
+      </md-input-container> 
+ 
+   
+    <button md-raised-button type="submit"  [disabled]="!propertyForm.valid">Update</button> 
+</md-card>
+
+  </form>
+</div>

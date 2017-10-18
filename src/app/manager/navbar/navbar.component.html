@@ -1,0 +1,65 @@
+<md-toolbar color="primary">
+  
+      <button  md-button (click)="gotoHome();"> Home</button>
+      Hi {{manager_name}}
+      <button  md-button (click)="gotoDashboard();"> Dashboard</button>
+      <button  md-button [mdMenuTriggerFor]="appMenu"><i class="material-icons">book</i> Properties</button>
+      <button  md-button [mdMenuTriggerFor]="appMenu1"><i class="material-icons">contacts</i> Tenants</button>
+      <button  md-button [mdMenuTriggerFor]="appMenu2"><i class="material-icons">face</i> Service Requests</button>
+      <!-- <button  md-button [mdMenuTriggerFor]="appMenu3"><i class="material-icons">face</i> Admins</button> -->
+      <!-- <button  md-button [mdMenuTriggerFor]="appMenu4"><i class="material-icons">build</i> Manage</button>	 -->
+      <button  md-button [mdMenuTriggerFor]="appMenu5"><i class="material-icons">face</i> Service Resources</button>	
+      
+      
+      <button  md-button (click)="onLogoutClick()">Logout </button>
+</md-toolbar>
+  
+  <md-menu #appMenu="mdMenu">
+      <a routerLink="/manager/properties/leased" routerLinkActive="active"><button md-menu-item> Leased  </button></a>
+      <a routerLink="/manager/properties/unleased" routerLinkActive="active"><button md-menu-item> Un-Leased  </button></a>
+    <a routerLink="/manager/properties/add" routerLinkActive="active"><button md-menu-item> Add  </button></a>
+      <a routerLink="/manager/properties/all-leases" routerLinkActive="active"><button md-menu-item> Property Leases  </button></a>
+  </md-menu>
+  
+  <md-menu #appMenu1="mdMenu">
+    <a routerLink="/manager/tenants/leased" routerLinkActive="active"><button md-menu-item> Leased  </button></a>
+    <a routerLink="/manager/tenants/unleased" routerLinkActive="active"><button md-menu-item> Un-Leased  </button></a>
+    <a routerLink="/manager/archieved-tenants" routerLinkActive="active"><button md-menu-item> Archived  </button></a>
+    <a routerLink="/manager/tenants/add" routerLinkActive="active"><button md-menu-item> Add  </button></a>
+  </md-menu>
+  
+  <md-menu #appMenu2="mdMenu">
+    <a routerLink="/manager/requests/open" routerLinkActive="active"><button md-menu-item> Open  </button></a>
+    <a routerLink="/manager/requests/closed" routerLinkActive="active"><button md-menu-item> Closed  </button></a>
+    <a routerLink="/manager/requests/add" routerLinkActive="active"><button md-menu-item> Create  </button></a>
+  </md-menu>
+  
+  <md-menu #appMenu3="mdMenu">
+    <a routerLink="/admin/admin-accounts" routerLinkActive="active"><button md-menu-item> Accounts  </button></a>
+    <a routerLink="/admin/add-admin" routerLinkActive="active"><button md-menu-item> Add  </button></a>
+    <a routerLink="/admin/authorization" routerLinkActive="active"><button md-menu-item> Authorizations  </button></a>
+  </md-menu>
+  
+  <md-menu #appMenu4="mdMenu">
+    <a routerLink="/manage/site-alerts" routerLinkActive="active"><button md-menu-item> SiteAlerts  </button></a>
+    <a routerLink="/manage/reports" routerLinkActive="active"><button md-menu-item> Reports  </button></a>
+    <a routerLink="/manage/form-templates" routerLinkActive="active"><button md-menu-item> Forms & Templates  </button></a>
+    <a routerLink="/manage/site-content" routerLinkActive="active"><button md-menu-item> Site Content  </button></a>
+    <a routerLink="/manage/settings" routerLinkActive="active"><button md-menu-item> Settings  </button></a>
+    <a routerLink="/manage/sitelogs" routerLinkActive="active"><button md-menu-item> Site Logs  </button></a>
+  </md-menu>
+  
+  <md-menu #appMenu5="mdMenu">
+    <a routerLink="/manager/service-resource/add" routerLinkActive="active"><button md-menu-item> Add Resource  </button></a>
+    <a routerLink="/manager/service-resource/list" routerLinkActive="active"><button md-menu-item> Resources  </button></a>
+  </md-menu>
+  
+    <!-- <md-menu #appMenu6="mdMenu">
+    <a routerLink="/manager/manager-register" routerLinkActive="active"><button md-menu-item> Manager Register  </button></a>
+    <a routerLink="/manager/manager-login" routerLinkActive="active"><button md-menu-item> Manager Login  </button></a>
+  </md-menu> -->
+  
+  
+      <div class="container" style="padding-top:30px; padding-bottom:30px">
+      
+    </div>

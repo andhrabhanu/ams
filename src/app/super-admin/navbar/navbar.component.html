@@ -1,0 +1,34 @@
+<md-toolbar color="primary">
+      <button  md-button (click)="gotoHome();"> Home</button>
+      <button  md-button (click)="btnClick();"> Dashboard</button>
+      <!--<button  md-button (click)="addManager();"> Add Manager</button>
+      <button  md-button (click)="goManagers();"> Managers</button> -->
+    
+        
+      <button  md-button [mdMenuTriggerFor]="appMenu1"><i class="material-icons">book</i> Apartment</button>
+      <button  md-button [mdMenuTriggerFor]="appMenu2"><i class="material-icons">book</i> Admins</button>
+      <button  md-button [mdMenuTriggerFor]="appMenu3"><i class="material-icons">book</i> Cities</button>
+      
+      
+      <button  md-button (click)="onLogoutClick()">Logout</button>
+  </md-toolbar>
+  
+
+  
+  <md-menu #appMenu1="mdMenu">
+    <a routerLink="/super-admin/apartment/add" routerLinkActive="active"><button md-menu-item> Add Apartment  </button></a>
+     <a routerLink="/super-admin/apartment/list" routerLinkActive="active"><button md-menu-item> List Apartments  </button></a> 
+  </md-menu>
+  <md-menu #appMenu2="mdMenu">
+    <a routerLink="/super-admin/admin/add" routerLinkActive="active"><button md-menu-item> Add Admin </button></a>
+    <!-- <a routerLink="/admin/floors/list" routerLinkActive="active"><button md-menu-item> List Floors  </button></a> -->
+  </md-menu>
+
+  <md-menu #appMenu3="mdMenu">
+    <a routerLink="/super-admin/cities/add" routerLinkActive="active"><button md-menu-item> Add City </button></a>
+     <a routerLink="/super-admin/cities/list" routerLinkActive="active"><button md-menu-item> List Cities  </button></a>
+  </md-menu>
+  
+      <div class="container" style="padding-top:30px; padding-bottom:30px">
+      
+    </div>

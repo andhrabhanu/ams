@@ -1,0 +1,74 @@
+<div class="container">
+  <h2>Add Bill</h2> 
+  <h3>Available Fund - {{fundsTotal | currency:"INR":true }}</h3>
+  
+  <form class="example-form" [formGroup]="billForm" (ngSubmit)="onFormSubmit()">
+     
+  
+    <md-card class="example-card">
+
+      <md-select formControlName="billType" placeholder="Bill Type">
+        <md-option disabled >Select</md-option>
+        <md-option *ngFor="let billType of billTypes" value= {{billType._id}}>{{billType.billType}}</md-option>
+    </md-select>
+      <md-error *ngIf="billType.hasError('required')">
+        Bill Type is <strong>required</strong>
+      </md-error>
+
+    
+<md-input-container>
+    <input mdInput [mdDatepicker]="picker" [formControl]="billDate" placeholder="Bill Date">
+    <button mdSuffix [mdDatepickerToggle]="picker"></button>
+    <md-error *ngIf="billDate.hasError('required')">
+      Bill Date is <strong>required</strong>
+    </md-error>	
+  </md-input-container>
+  <md-datepicker #picker></md-datepicker>
+<br><br>
+  
+  <md-select formControlName="billMonth" placeholder="Bill Month">
+      <md-option disabled >Select</md-option>
+      <md-option *ngFor="let month of months" value= {{month._id}}>{{month.month}}</md-option>
+  </md-select>
+    <md-error *ngIf="billMonth.hasError('required')">
+      Bill Month is <strong>required</strong>
+    </md-error>
+<br>
+    <md-select formControlName="billYear" placeholder="Bill Year">
+        <md-option disabled >Select</md-option>
+        <md-option *ngFor="let year of years" value= {{year._id}}>{{year.year}}</md-option>
+    </md-select>
+      <md-error *ngIf="billYear.hasError('required')">
+        Bill Year is <strong>required</strong>
+      </md-error>  
+
+      <md-input-container class="example-full-width">
+          <input mdInput placeholder="Bill Amount" [formControl]="billAmount">
+          <md-error *ngIf="billAmount.hasError('required')">
+              Bill Amount is <strong>required</strong>
+          </md-error>
+      </md-input-container>
+
+      <md-input-container class="example-full-width">
+          <input mdInput placeholder="Bank" [formControl]="bank">
+          <md-error *ngIf="bank.hasError('required')">
+              Bank is <strong>required</strong>
+          </md-error>
+      </md-input-container>
+
+      <md-input-container class="example-full-width">
+          <textarea mdInput placeholder="Bill Details" [formControl]="billDetails"></textarea>
+           <md-error *ngIf="billDetails.hasError('required')">
+              Bill Details is <strong>required</strong>
+           </md-error>
+       </md-input-container>
+
+
+
+<br>
+<br>
+  <button md-raised-button type="submit"  [disabled]="!billForm.valid">Add Bill</button> 
+  </md-card>
+    <!-- </div> -->
+    </form>
+  </div>

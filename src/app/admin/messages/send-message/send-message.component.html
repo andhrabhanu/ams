@@ -1,0 +1,71 @@
+<div class="container">
+    <h3>Send Messsage</h3>
+    
+     <md-card class="example-card">
+        <form (ngSubmit)="onSubmit()" #sendMessageForm="ngForm">
+        
+  
+            <div class="row">
+                <div class="form-group">
+                <angular2-multiselect [data]="dropdownList"
+                 [(ngModel)]="selectedItems"
+                [ngModelOptions]="{standalone: true}"
+               [settings]="dropdownSettings" 
+               (onSelect)="onItemSelect($event)" 
+               (onDeSelect)="OnItemDeSelect($event)"
+               (onSelectAll)="onSelectAll($event)"
+               (onDeSelectAll)="onDeSelectAll($event)"></angular2-multiselect>
+
+               
+                 </div> 
+  
+  
+  
+              <div class="col-md-6">
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" class="form-control" id="subject" required [(ngModel)]="model.subject" name="subject" #subject="ngModel">
+                    
+                   <!--  <select  class="form-control" id="month" required  [(ngModel)]="model.month" name="month" #month="ngModel">         
+                      <option *ngFor="let month of months" value= {{month._id}}>{{month.month}}</option>
+                    </select> -->
+  
+  
+  
+                      <div *ngIf="subject.errors && (subject.dirty || subject.touched)" class="alert alert-danger">
+                        <div [hidden]="!subject.errors.required">
+                          Subject is required!
+                        </div>
+                      </div>
+                <div>
+              </div>
+              </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                    <label for="body">Body</label>
+                    <input type="text" class="form-control" id="body" required [(ngModel)]="model.body" name="body" #body="ngModel">
+
+                      <div *ngIf="body.errors && (body.dirty || body.touched)" class="alert alert-danger">
+                              <div [hidden]="!body.errors.required">
+                                  Body is required!
+                              </div>
+                      </div>
+                    
+          
+          
+                </div>
+              </div>
+              </div>
+        
+        
+      
+        
+               <button [disabled]="!sendMessageForm.form.valid"  type="submit">Send Message</button> 
+        </form>   
+     </md-card>
+  </div>
+    
+  
+  
+  

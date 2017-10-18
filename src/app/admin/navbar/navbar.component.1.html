@@ -1,0 +1,104 @@
+<!--  <md-toolbar color="primary">
+
+      Welcome {{admin_name}} <br> {{apartmentName}}
+      <button  md-button (click)="btnClick();"> Dashboard</button>
+
+        
+     
+      <button  md-button [mdMenuTriggerFor]="appMenu1"><i class="material-icons">book</i> Floors</button>	
+      <button  md-button [mdMenuTriggerFor]="appMenu2"><i class="material-icons">book</i> Units</button>
+      <button  md-button [mdMenuTriggerFor]="appMenu12"><i class="material-icons">book</i> Management</button>
+      <button  md-button [mdMenuTriggerFor]="appMenu13"><i class="material-icons">book</i> Messages</button>
+      <button  md-button [mdMenuTriggerFor]="appMenu10"><i class="material-icons">book</i> Corpus Fund</button>
+      <button  md-button [mdMenuTriggerFor]="appMenu11"><i class="material-icons">book</i> Complaints</button>
+      <button  md-button [mdMenuTriggerFor]="appMenu4"><i class="material-icons">book</i> Owners</button>
+      <button  md-button [mdMenuTriggerFor]="appMenu5"><i class="material-icons">book</i> Settings</button>
+      <button  md-button [mdMenuTriggerFor]="appMenu6"><i class="material-icons">book</i> Employee</button>
+      <button  md-button [mdMenuTriggerFor]="appMenu7"><i class="material-icons">book</i> Bill</button>
+      <button  md-button [mdMenuTriggerFor]="appMenu8"><i class="material-icons">book</i> Fund</button>
+      <button  md-button [mdMenuTriggerFor]="appMenu9"><i class="material-icons">book</i> Maintenance</button>
+      
+      
+      <button  md-button (click)="gotoProfile()">Profile</button>
+      <button  md-button (click)="onLogoutClick()">Logout</button>
+  </md-toolbar>
+  
+  <md-menu #appMenu1="mdMenu">
+    <a routerLink="/admin/floors/add" routerLinkActive="active"><button md-menu-item> Add Floor  </button></a>
+    <a routerLink="/admin/floors/list" routerLinkActive="active"><button md-menu-item> List Floors  </button></a>
+  </md-menu>
+
+  <md-menu #appMenu2="mdMenu">
+    <a routerLink="/admin/units/add" routerLinkActive="active"><button md-menu-item> Add Unit  </button></a>
+    <a routerLink="/admin/units/list" routerLinkActive="active"><button md-menu-item> List Units  </button></a>
+  </md-menu>
+  
+  <md-menu #appMenu3="mdMenu">
+    <a routerLink="/admin/apartment/add" routerLinkActive="active"><button md-menu-item> Apartment  </button></a>
+  </md-menu>
+
+  <md-menu #appMenu4="mdMenu">
+    <a routerLink="/admin/owners/add" routerLinkActive="active"><button md-menu-item> Add Owner  </button></a>
+    <a routerLink="/admin/owners/list" routerLinkActive="active"><button md-menu-item> List Owners  </button></a>
+  </md-menu>
+
+  <md-menu #appMenu5="mdMenu">
+    <a routerLink="/admin/member-type/add" routerLinkActive="active"><button md-menu-item> Add Member Type  </button></a>
+    <a routerLink="/admin/member-type/list" routerLinkActive="active"><button md-menu-item> List Member Types  </button></a>
+    <a routerLink="/admin/year/add" routerLinkActive="active"><button md-menu-item> Add Year  </button></a>
+    <a routerLink="/admin/year/list" routerLinkActive="active"><button md-menu-item> List year  </button></a>
+    <a routerLink="/admin/month/add" routerLinkActive="active"><button md-menu-item> Add Month  </button></a>
+    <a routerLink="/admin/month/list" routerLinkActive="active"><button md-menu-item> List Months  </button></a>
+    <a routerLink="/admin/billType/add" routerLinkActive="active"><button md-menu-item> Add BillType  </button></a>
+    <a routerLink="/admin/billType/list" routerLinkActive="active"><button md-menu-item> List BillType  </button></a>
+    <a routerLink="/admin/salary/add" routerLinkActive="active"><button md-menu-item> Add Employee Salary  </button></a>
+    <a routerLink="/admin/salary/list" routerLinkActive="active"><button md-menu-item> List Salaries  </button></a>
+    
+  </md-menu>
+  
+  <md-menu #appMenu6="mdMenu">
+    <a routerLink="/admin/employee/add" routerLinkActive="active"><button md-menu-item> Add Employee  </button></a>
+    <a routerLink="/admin/employee/list" routerLinkActive="active"><button md-menu-item> List   </button></a>
+  </md-menu>
+
+  <md-menu #appMenu7="mdMenu">
+    <a routerLink="/admin/bill/add" routerLinkActive="active"><button md-menu-item> Add Bill  </button></a>
+    <a routerLink="/admin/bill/list" routerLinkActive="active"><button md-menu-item> List   </button></a>
+  </md-menu>
+
+  <md-menu #appMenu8="mdMenu">
+      <a routerLink="/admin/fund/check-monthly" routerLinkActive="active"><button md-menu-item> Check MonthlyFund  </button></a>
+     <a routerLink="/admin/fund/add-monthly" routerLinkActive="active"><button md-menu-item> Add MonthlyFund  </button></a>
+      <a routerLink="/admin/fund/list-monthly" routerLinkActive="active"><button md-menu-item> List MonthlyFunds  </button></a>
+    <a routerLink="/admin/fund/add" routerLinkActive="active"><button md-menu-item> Add Fund  </button></a>
+    <a routerLink="/admin/fund/list" routerLinkActive="active"><button md-menu-item> List   </button></a>
+  </md-menu>
+
+  <md-menu #appMenu9="mdMenu">
+    <a routerLink="/admin/maintenance/add" routerLinkActive="active"><button md-menu-item> Add Maintenance  </button></a>
+    <a routerLink="/admin/maintenance/list" routerLinkActive="active"><button md-menu-item> List   </button></a>
+  </md-menu>
+
+  <md-menu #appMenu10="mdMenu">
+    <a routerLink="/admin/corpus-fund/add" routerLinkActive="active"><button md-menu-item> Add CorpusFund  </button></a>
+    <a routerLink="/admin/corpus-fund/list" routerLinkActive="active"><button md-menu-item> List   </button></a>
+  </md-menu>
+
+  <md-menu #appMenu11="mdMenu">
+    <a routerLink="/admin/complaints/add" routerLinkActive="active"><button md-menu-item> Add Complaint  </button></a>
+     <a routerLink="/admin/complaints/list" routerLinkActive="active"><button md-menu-item> Open   </button></a>
+     <a routerLink="/admin/complaints/list-closed" routerLinkActive="active"><button md-menu-item> Closed   </button></a>
+  </md-menu>
+
+  <md-menu #appMenu12="mdMenu">
+    <a routerLink="/admin/management/add" routerLinkActive="active"><button md-menu-item> Add Management  </button></a>
+    <a routerLink="/admin/management/list" routerLinkActive="active"><button md-menu-item> List   </button></a>
+  </md-menu>
+
+  <md-menu #appMenu13="mdMenu">
+    <a routerLink="/admin/message/send" routerLinkActive="active"><button md-menu-item> Send Message  </button></a>
+    <a routerLink="/admin/management/list" routerLinkActive="active"><button md-menu-item> List   </button></a>
+  </md-menu>
+  
+      <div class="container" style="padding-top:30px; padding-bottom:30px">
+  </div> --> 

@@ -1,0 +1,853 @@
+
+    
+<div class="container">
+<h3>{{propertyName}}</h3>
+
+
+
+<hr/>
+<div class="row">
+      <div class="col-md-8">
+        <section class="viewProp mt-10 mb-20">
+          
+          <div class="row mb-10">
+            <div class="col-md-12">
+        <section class="viewProp mt-10 mb-20">
+          <p class="lead mb-0 mt-0">Unleased Bungalow independent</p>
+          <div class="propFee clearfix">
+            <div class="propPrice">{{rent | currency:'INR':true}} <small class="text-muted">/ Month</small></div>
+          </div>
+
+          <hr>
+
+          <div class="row mb-10">
+            <div class="col-sm-8">
+            <!-- Featured Image Here -->
+
+
+
+
+    <!-- <img alt="" src="http://tejoma.com/reside/pictures/soni-19945851.jpg" class="img-responsive"> -->
+  
+        <img class="img-responsive"  src="http://localhost:8080/public/uploads/{{featured_img}}"/>
+      
+
+
+
+          <p class="lead mb-0 mt-10">{{address}}</p>
+            </div>
+            <div class="col-sm-4">
+              <ul class="propLists">
+                <li><strong>Bedrooms</strong>: {{bedrooms}}</li>
+                <li><strong>Bathrooms</strong>: {{bathrooms}}</li>
+                <li><strong>Size</strong>: {{size}}</li>
+                <li><strong>Heating</strong>: {{heating}}</li>
+                <li><strong>Year Built</strong>: {{yearBuilt}}</li>
+                <li><strong>Pets</strong>: {{petsAllowed}}</li>
+                <li><strong>Parking</strong>: {{parking}}</li>
+              
+                <li><strong>Deposit</strong>: {{deposit | currency:'INR':true}}</li>
+                <li><strong>Late Fee</strong>: {{latepenalty | currency:'INR':true}}</li>
+              </ul>
+              
+      <button (click)="editProperty()" class="btn">Update Info</button>	
+
+      <button (click)="showDialog = !showDialog" class="btn">Upload Image</button>
+      <app-image-upload [(visible)]="showDialog">
+               <h1>Upload Image Here</h1>
+
+              <form>
+                   <br>
+                    <label class="uploader" ondragover="return false;"
+                          [class.loaded]="loaded" 
+                          [style.outlineColor]="dragging ? activeColor : baseColor"
+                          (dragenter)="handleDragEnter()"
+                          (dragleave)="handleDragLeave()"
+                          (drop)="handleDrop($event)">
+                          
+                          <i class="icon icon-upload" 
+                            [style.color]="dragging 
+                              ? ((imageSrc.length > 0) ? overlayColor : activeColor)
+                              : ((imageSrc.length > 0) ? overlayColor : baseColor)"></i>
+                          
+                          <img 
+                            [src]="imageSrc" 
+                            (load)="handleImageLoad()" 
+                            [class.loaded]="imageLoaded"/>
+                          
+                          <input type="file" name="single" ng2FileSelect [uploader]="uploader" accept="image/*"
+                            (change)="handleInputChange($event)">
+                      </label> 
+              </form>
+              <button (click)="showDialog = !showDialog" class="btn">Close</button>
+              <button (click)="uploader.uploadAll()" class="btn">Upload</button> 
+        </app-image-upload>
+                              
+
+
+
+
+          </div>
+          </div>
+
+          <div class="modal fade" id="editProperty" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fa fa-times"></i></span></button>
+                  <h4 class="modal-title">Update Property Information</h4>
+                </div>
+                <form action="" method="post">
+                  <div class="modal-body">
+                    <div class="form-group">
+                      <label for="propertyName">Property Name</label>
+                      <input type="text" class="form-control" name="propertyName" id="propertyName" required="required" value="Soni">
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="propertyAddress">Property Address</label>
+                          <textarea class="form-control" name="propertyAddress" id="propertyAddress" required="required" rows="3">{{address}}</textarea>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="propertyDesc">Property Description</label>
+                          <textarea class="form-control" name="propertyDesc" id="propertyDesc" required="required" rows="3"> Independent Bungalow </textarea>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="propertyRate">Property Rental Rate</label>
+                          <input type="text" class="form-control" name="propertyRate" id="propertyRate" required="required" value="80000">
+                          <span class="help-block">Numbers Only, No currency symbols (Format: 500.00).</span>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="propertyDeposit">Rental Deposit Amount</label>
+                          <input type="text" class="form-control" name="propertyDeposit" id="propertyDeposit" required="required" value="240000">
+                          <span class="help-block">Numbers Only, No currency symbols (Format: 500.00).</span>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="latePenalty">Late Fee Amount</label>
+                          <input type="text" class="form-control" name="latePenalty" id="latePenalty" required="required" value="10000">
+                          <span class="help-block">Numbers Only, No currency symbols (Format: 500.00).</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="propertyType">Property Type</label>
+                          <input type="text" class="form-control" name="propertyType" id="propertyType" required="required" value="Bungalow">
+                          <span class="help-block">ie. Single Family, Multi-Family etc.</span>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="propertyStyle">Property Style</label>
+                          <input type="text" class="form-control" name="propertyStyle" id="propertyStyle" required="required" value="independent">
+                          <span class="help-block">ie. Detached Home, Apartment, Town House etc.</span>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="petsAllowed">Pets Allowed</label>
+                          <select class="form-control chosen-select" name="petsAllowed" id="petsAllowed" style="display: none;">
+                            <option value="0">No</option>
+                            <option value="1" selected="">Yes</option>
+                          </select><div class="chosen-container chosen-container-single chosen-container-single-nosearch" style="width: 0px;" title="" id="petsAllowed_chosen"><a class="chosen-single" tabindex="-1"><span>Yes</span><div><b></b></div></a><div class="chosen-drop"><div class="chosen-search"><input type="text" autocomplete="off" readonly=""></div><ul class="chosen-results"></ul></div></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label for="yearBuilt">Year Built</label>
+                          <input type="text" class="form-control" name="yearBuilt" id="yearBuilt" value="2006">
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label for="propertySize">Property Size</label>
+                          <input type="text" class="form-control" name="propertySize" id="propertySize" value="5000">
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label for="bedrooms">Total Bedrooms</label>
+                          <input type="text" class="form-control" name="bedrooms" id="bedrooms" value="7">
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label for="bathrooms">Total Bathrooms</label>
+                          <input type="text" class="form-control" name="bathrooms" id="bathrooms" value="5">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="parking">Parking Type</label>
+                          <input type="text" class="form-control" name="parking" id="parking" value="covered">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="heating">Heating/Air Conditioning</label>
+                          <input type="text" class="form-control" name="heating" id="heating" value="NA">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="googleMap">Google Map Embed URL</label>
+                      <textarea class="form-control" name="googleMap" id="googleMap" rows="3"></textarea>
+                      <span class="help-block">Google Map Embed URL only. Do NOT include the &lt;iframe&gt; or any of the attributes.</span>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="input" name="submit" value="editProperty" class="btn btn-success btn-icon"><i class="fa fa-check-square-o"></i> Update Property Information</button>
+                    <button type="button" class="btn btn-default btn-icon" data-dismiss="modal"><i class="fa fa-times-circle-o"></i> Cancel</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal fade" id="setFeatured" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <form action="" method="post">
+                  <div class="modal-body">
+                                              <p class="lead">Setting a Property to Featured will have the Property shown on the Home Page, and will add the ribbon tag "Featured".<br>
+<small>Only un-leased Properties will be displayed.</small></p>
+                                          </div>
+                  <div class="modal-footer">
+                    <input type="hidden" name="propertyName" value="Soni">
+                      <button type="input" name="submit" value="setFeatured" class="btn btn-success btn-icon"><i class="fa fa-check-square-o"></i> Set as a Featured Property</button>
+                    <button type="button" class="btn btn-default btn-icon" data-dismiss="modal"><i class="fa fa-times-circle-o"></i> Cancel</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+                          <!-- <iframe width="100%" height="240" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="" class="mapBorder"></iframe> -->
+          
+          <p class="lead">Independent Bungalow</p>
+        </section>
+
+        <hr class="mt-0">
+
+        <h3>{{propertyName}} Pics</h3>
+        <p>Any pictures uploaded for this property are viewable by guests and Tenants/Residents.</p>
+
+      <!-- <div class="gallery">
+
+                        <div *ngFor="let propertyImage of propertyImages">
+            <img class="img-responsive"  src="http://localhost:8080/public/uploads/{{propertyImage}}"/>
+           </div> 
+      </div> -->
+
+      <app-image-gallery [datasource]=propertyImages></app-image-gallery>
+      <app-image-gallery [datasourceId]=prop_id></app-image-gallery>
+
+
+
+      
+           
+
+
+                  <!--  <a data-toggle="modal" href="#viewPicture1">
+                    <img src="http://tejoma.com/reside/pictures/soni-10914412.jpg">
+                  </a> 
+
+                <div class="modal fade" id="viewPicture1" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+                    
+                   <div class="modal-dialog modal-lg">
+                      <div class="modal-content"> 
+                         <div class="modal-body">
+                          <img src="http://tejoma.com/reside/pictures/soni-10914412.jpg" class="img-responsive">
+                          <small>Image: pictures/soni-10914412.jpg</small>
+                        </div> 
+                         <div class="modal-footer">
+                          <a data-toggle="modal" href="#delPicture1" class="btn btn-danger btn-icon" data-dismiss="modal"><i class="fa fa-trash"></i> Delete Picture</a>
+                          <button type="button" class="btn btn-default btn-icon" data-dismiss="modal"><i class="fa fa-times-circle-o"></i> Cancel</button>
+                        </div> 
+                       </div> 
+                     </div> 
+
+              </div>
+
+              <div class="modal fade" id="delPicture1" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <form action="" method="post">
+                      <div class="modal-body">
+                        <p class="lead">Are you sure you want to permanently DELETE this Property Picture?</p>
+                      </div>
+                      <div class="modal-footer">
+                        <input type="hidden" name="pictureId" value="1">
+                        <input type="hidden" name="propertyName" value="Soni">
+                        <input type="hidden" name="picUrl" value="soni-10914412.jpg">
+                        <button type="input" name="submit" value="delPicture" class="btn btn-success btn-icon"><i class="fa fa-check-square-o"></i> Delete Picture</button>
+                        <button type="button" class="btn btn-default btn-icon" data-dismiss="modal"><i class="fa fa-times-circle-o"></i> Cancel</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div> -->
+                              <!-- <a data-toggle="modal" href="#viewPicture2">
+                <img src="http://tejoma.com/reside/pictures/soni-10914412.jpg">
+              </a> -->
+
+            <!-- 	<div class="modal fade" id="viewPicture2" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-body">
+                      <img src="http://tejoma.com/reside/pictures/soni-10914412.jpg" class="img-responsive">
+                      <small>Image: pictures/soni-15824651.jpg</small>
+                    </div>
+                    <div class="modal-footer">
+                      <a data-toggle="modal" href="#delPicture2" class="btn btn-danger btn-icon" data-dismiss="modal"><i class="fa fa-trash"></i> Delete Picture</a>
+                      <button type="button" class="btn btn-default btn-icon" data-dismiss="modal"><i class="fa fa-times-circle-o"></i> Cancel</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="modal fade" id="delPicture2" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <form action="" method="post">
+                      <div class="modal-body">
+                        <p class="lead">Are you sure you want to permanently DELETE this Property Picture?</p>
+                      </div>
+                      <div class="modal-footer">
+                        <input type="hidden" name="pictureId" value="2">
+                        <input type="hidden" name="propertyName" value="Soni">
+                        <input type="hidden" name="picUrl" value="soni-15824651.jpg">
+                        <button type="input" name="submit" value="delPicture" class="btn btn-success btn-icon"><i class="fa fa-check-square-o"></i> Delete Picture</button>
+                        <button type="button" class="btn btn-default btn-icon" data-dismiss="modal"><i class="fa fa-times-circle-o"></i> Cancel</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+                          </div>
+        
+        <div class="clearfix"></div>
+
+                      <a data-toggle="modal" href="#deleteImage" class="btn btn-xs btn-warning btn-icon mt-10"><i class="fa fa-times"></i> Delete Featured Image</a>
+
+          <div class="modal fade" id="deleteImage" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <form action="" method="post">
+                  <div class="modal-body">
+                    <p class="lead">Are you sure you want to permanently DELETE the Featured Image for this Property?</p>
+                  </div>
+                  <div class="modal-footer">
+                    <input type="hidden" name="propertyImage" value="soni-19945851.jpg">
+                    <input type="hidden" name="propertyName" value="Soni">
+                    <button type="input" name="submit" value="deleteImage" class="btn btn-success btn-icon"><i class="fa fa-check-square-o"></i> Delete Featured Image</button>
+                    <button type="button" class="btn btn-default btn-icon" data-dismiss="modal"><i class="fa fa-times-circle-o"></i> Cancel</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div> -->
+        
+
+        <!-- <a data-toggle="modal" href="#uploadPics" class="btn btn-xs btn-success btn-icon mt-10"><i class="fa fa-upload"></i> Upload Property Pictures</a> -->
+      
+      
+        <button (click)="showDialog1 = !showDialog1" class="btn">Upload Property Pictures</button>
+        <app-multi-image-upload [(visible)]="showDialog1">
+          <h1>Property Pictures</h1>
+
+          <form>
+            <div class="form-group">
+                                <label for="multiple">Multiple</label>
+                                <input type="file" class="form-control" name="multiple" ng2FileSelect [uploader]="uploader_multi" multiple  />
+                            </div>
+          
+          </form>
+          <table class="table">
+                            <thead>
+                            <tr>
+                                <th width="50%">Name</th>
+                                <th>Size</th>
+                                <th>Progress</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let item of uploader_multi.queue">
+                                <td><strong>{{ item.file.name }}</strong></td>
+                                <td nowrap>{{ item.file.size/1024/1024 | number:'.2' }} MB</td>
+                                <td>
+                                    <div class="progress" style="margin-bottom: 0;">
+                                        <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
+                                    </div>
+                                </td>
+                                <td class="text-center">
+                                    <span *ngIf="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                                    <span *ngIf="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                                    <span *ngIf="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+                                </td>
+                                <td nowrap>
+                                    <button type="button" class="btn btn-success btn-xs"
+                                            (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
+                                        <span class="glyphicon glyphicon-upload"></span> Upload
+                                    </button>
+                             <button type="button" class="btn btn-warning btn-xs"
+                                            (click)="item.cancel()" [disabled]="!item.isUploading">
+                                        <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+                                    </button>
+                                    <button type="button" class="btn btn-danger btn-xs"
+                                            (click)="item.remove()">
+                                        <span class="glyphicon glyphicon-trash"></span> Remove
+                                    </button> 
+                                </td>
+                            </tr>
+                            </tbody>
+          </table>
+           <button type="button" class="btn btn-success btn-s"
+                                    (click)="uploader_multi.uploadAll()">
+                                <span class="glyphicon glyphicon-upload"></span> Upload all
+                            </button> 
+        <button (click)="showDialog1 = !showDialog1" class="btn">Close</button>
+        </app-multi-image-upload>	
+
+
+        <div class="modal fade" id="uploadPics" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fa fa-times"></i></span></button>
+                <h4 class="modal-title">Upload Pictures for this Property</h4>
+              </div>
+              <form enctype="multipart/form-data" action="" method="post">
+                <div class="modal-body">
+                  <p>
+                    <small>
+                      Image/Picture types allowed: jpg, png<br>
+                      Max Pictures per upload: 20<br>
+                      Max Upload File Size: 512 mb.
+                    </small>
+                  </p>
+                  <div class="form-group">
+                    <label for="files">Select Pictures</label>
+                    <input type="file" id="files" name="files[]" multiple="multiple" required="required">
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <input type="hidden" name="propertyName" value="Soni">
+                  <button type="input" name="submit" value="uploadPics" class="btn btn-success btn-icon"><i class="fa fa-upload"></i> Upload Pictures</button>
+                  <button type="button" class="btn btn-default btn-icon" data-dismiss="modal"><i class="fa fa-times-circle-o"></i> Cancel</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <hr>
+
+      
+      </div>
+            
+          </div>
+
+          <div class="modal fade" id="editProperty" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fa fa-times"></i></span></button>
+                  <h4 class="modal-title">Update Property Information</h4>
+                </div>
+                <form action="" method="post">
+                  <div class="modal-body">
+                    <div class="form-group">
+                      <label for="propertyName">Property Name</label>
+                      <input type="text" class="form-control" name="propertyName" id="propertyName" required="required" value="Soni">
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="propertyAddress">Property Address</label>
+                          <textarea class="form-control" name="propertyAddress" id="propertyAddress" required="required" rows="3">{{address}}</textarea>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="propertyDesc">Property Description</label>
+                          <textarea class="form-control" name="propertyDesc" id="propertyDesc" required="required" rows="3">Independent Bungalow</textarea>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="propertyRate">Property Rental Rate</label>
+                          <input type="text" class="form-control" name="propertyRate" id="propertyRate" required="required" value="80000">
+                          <span class="help-block">Numbers Only, No currency symbols (Format: 500.00).</span>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="propertyDeposit">Rental Deposit Amount</label>
+                          <input type="text" class="form-control" name="propertyDeposit" id="propertyDeposit" required="required" value="240000">
+                          <span class="help-block">Numbers Only, No currency symbols (Format: 500.00).</span>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="latePenalty">Late Fee Amount</label>
+                          <input type="text" class="form-control" name="latePenalty" id="latePenalty" required="required" value="10000">
+                          <span class="help-block">Numbers Only, No currency symbols (Format: 500.00).</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="propertyType">Property Type</label>
+                          <input type="text" class="form-control" name="propertyType" id="propertyType" required="required" value="Bungalow">
+                          <span class="help-block">ie. Single Family, Multi-Family etc.</span>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="propertyStyle">Property Style</label>
+                          <input type="text" class="form-control" name="propertyStyle" id="propertyStyle" required="required" value="independent">
+                          <span class="help-block">ie. Detached Home, Apartment, Town House etc.</span>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="petsAllowed">Pets Allowed</label>
+                          <select class="form-control chosen-select" name="petsAllowed" id="petsAllowed" style="display: none;">
+                            <option value="0">No</option>
+                            <option value="1" selected="">Yes</option>
+                          </select><div class="chosen-container chosen-container-single chosen-container-single-nosearch" style="width: 0px;" title="" id="petsAllowed_chosen"><a class="chosen-single" tabindex="-1"><span>Yes</span><div><b></b></div></a><div class="chosen-drop"><div class="chosen-search"><input type="text" autocomplete="off" readonly=""></div><ul class="chosen-results"></ul></div></div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label for="yearBuilt">Year Built</label>
+                          <input type="text" class="form-control" name="yearBuilt" id="yearBuilt" value="2006">
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label for="propertySize">Property Size</label>
+                          <input type="text" class="form-control" name="propertySize" id="propertySize" value="5000">
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label for="bedrooms">Total Bedrooms</label>
+                          <input type="text" class="form-control" name="bedrooms" id="bedrooms" value="7">
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label for="bathrooms">Total Bathrooms</label>
+                          <input type="text" class="form-control" name="bathrooms" id="bathrooms" value="5">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="parking">Parking Type</label>
+                          <input type="text" class="form-control" name="parking" id="parking" value="covered">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="heating">Heating/Air Conditioning</label>
+                          <input type="text" class="form-control" name="heating" id="heating" value="NA">
+                        </div>
+                      </div>
+                    </div>
+                                   
+                    <div class="form-group">
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="input" name="submit" value="editProperty" class="btn btn-success btn-icon"><i class="fa fa-check-square-o"></i> Update Property Information</button>
+                    <button type="button" class="btn btn-default btn-icon" data-dismiss="modal"><i class="fa fa-times-circle-o"></i> Cancel</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal fade" id="setFeatured" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <form action="" method="post">
+                  <div class="modal-body">
+                                              <p class="lead">Setting a Property to Featured will have the Property shown on the Home Page, and will add the ribbon tag "Featured".<br>
+<small>Only un-leased Properties will be displayed.</small></p>
+                                          </div>
+                  <div class="modal-footer">
+                    <input type="hidden" name="propertyName" value="Soni">
+                                              <button type="input" name="submit" value="setFeatured" class="btn btn-success btn-icon"><i class="fa fa-check-square-o"></i> Set as a Featured Property</button>
+                                            <button type="button" class="btn btn-default btn-icon" data-dismiss="modal"><i class="fa fa-times-circle-o"></i> Cancel</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <iframe width="100%" height="240" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d702.7983509818356!2d80.64548445905528!3d16.503677597048398!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a35fab035153a29%3A0x30b25f32f1ae6182!2sVeeramachaneni+Paddayya+Siddhartha+Public+School!5e0!3m2!1sen!2sin!4v1500076868056&quot; width=&quot;600&quot; height=&quot;450&quot; frameborder=&quot;0&quot; style=&quot;border:0&quot; allowfullscreen" class="mapBorder"></iframe>
+          
+          <!-- Style <p class="lead">{{style}}</p> -->
+        </section>
+
+        <hr class="mt-0">
+         
+        <md-tab-group>
+            <md-tab label="Property Amenities">
+                <h3>PROPERTY AMENITIES</h3>
+        <form class="example-form" [formGroup]="amenitiesForm" (ngSubmit)="UpdateAmenities()">
+          <md-input-container class="example-full-width">
+            <textarea mdInput placeholder="Amenities" [formControl]="amenitiesfc"></textarea>
+            <md-error *ngIf="amenitiesfc.hasError('required')">
+              Amenities <strong>required</strong>
+              </md-error>
+            </md-input-container>
+            <button md-fab type="submit"  [disabled]="!amenitiesForm.valid"><md-icon>check</md-icon></button>    
+            <br><br>
+        </form>
+
+
+            </md-tab>
+            <md-tab label="Property Listing">
+                <h3>PROPERTY LISTING</h3>
+              <form class="example-form" [formGroup]="amenitiesForm" (ngSubmit)="UpdateAmenities()">
+                      <md-input-container class="example-full-width">
+                        <textarea mdInput placeholder="Amenities" [formControl]="amenitiesfc"></textarea>
+                        <md-error *ngIf="amenitiesfc.hasError('required')">
+                          Amenities <strong>required</strong>
+                          </md-error>
+                        </md-input-container>
+                        <button md-fab type="submit"  [disabled]="!amenitiesForm.valid"><md-icon>check</md-icon></button>    
+                        <br><br>
+              </form>	
+            </md-tab>
+            <md-tab label="Property HOA">
+                <h3>HOME OWNERS ASSOCIATION</h3>
+                <hr>
+                <form class="example-form" [formGroup]="hoaForm" (ngSubmit)="UpdateHoa()">
+                <md-input-container class="example-full-width">
+                  <input mdInput placeholder="HoaName" [formControl]="hoaNamefc">
+                    <md-error *ngIf="hoaNamefc.hasError('required')">
+                      HoaName is <strong>required</strong>
+                  </md-error>
+                </md-input-container>
+
+                <md-input-container class="example-full-width">
+                  <input mdInput placeholder="HoaPhone" [formControl]="hoaPhonefc">
+                  <md-error *ngIf="hoaPhonefc.hasError('required')">
+                        HoaPhone is <strong>required</strong>
+                  </md-error>
+                </md-input-container>
+                <md-input-container class="example-full-width">
+                    <input mdInput placeholder="HoaAddress" [formControl]="hoaAddressfc">
+                    <md-error *ngIf="hoaAddressfc.hasError('required')">
+                          HoaAddress is <strong>required</strong>
+                    </md-error>
+                </md-input-container>
+                
+                <md-input-container class="example-full-width">
+                    <input mdInput placeholder="HoaFee" [formControl]="hoaFeefc">
+                    <md-error *ngIf="hoaFeefc.hasError('required')">
+                          HoaFee is <strong>required</strong>
+                    </md-error>
+                </md-input-container>
+
+                <md-input-container class="example-full-width">
+                    <input mdInput placeholder="HoaFeeSchedule" [formControl]="hoafeeScefc">
+                    <md-error *ngIf="hoafeeScefc.hasError('required')">
+                            Fee Schedule is <strong>required</strong>
+                    </md-error>
+                </md-input-container>	
+                
+                <button md-fab type="submit"  [disabled]="!hoaForm.valid"><md-icon>check</md-icon></button>
+                </form>
+      
+                <br>
+
+            </md-tab>
+        </md-tab-group>
+            
+              
+
+
+
+
+        
+      
+          
+      
+
+        
+      </div>
+      <div class="col-md-4">
+          
+        
+                    <div *ngIf="isLeased == 1">
+          <!-- <div  class="alertMsg default">
+            <div class="msgIcon pull-left">
+              <i class="fa fa-warning"></i>
+            </div>
+            
+            This Property is currently  leased.
+          </div> -->
+          <ul class="list-group mb-10">
+            <li class="list-group-item">
+              <strong>Tenant:</strong>
+              <a href="/manager/tenants/view-tenant/{{tenantUniqId}}" data-toggle="tooltip" data-placement="top" title="" data-original-title="View Tenant">
+                {{tenantName}}									</a>
+            </li>
+            <li class="list-group-item">
+              <strong>Lease Term:</strong> {{leaseTerm}}<br>
+              <small>{{ leaseStart | date:'dd-MMMM-yyyy' }}  to  {{ leaseEnd | date:'dd-MMMM-yyyy' }}</small>
+              
+            </li>
+           <!--  <li class="list-group-item">
+              <strong>Manager/Landlord:</strong>
+              Bhanu Chava
+                    <a data-toggle="modal" href="#reassignProp" class="btn btn-xs btn-default btn-icon"><i class="fa fa-pencil"></i> Reassign Property</a>
+                                        <div class="modal fade" id="reassignProp" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fa fa-times"></i></span></button>
+                          <h4 class="modal-title">Reassign Property to a Manager/Landlord</h4>
+                        </div>
+                        <form action="" method="post">
+                          <div class="modal-body">
+                                                            <div class="form-group">
+                              <select class="form-control chosen-select" id="reassignAdmin" name="reassignAdmin" style="display: none;">
+                                <option value="...">Select Admin</option>
+                                <option value="0">Remove Assigned</option>
+                                                                  </select><div class="chosen-container chosen-container-single chosen-container-single-nosearch" style="width: 0px;" title="" id="reassignAdmin_chosen"><a class="chosen-single" tabindex="-1"><span>Select Admin</span><div><b></b></div></a><div class="chosen-drop"><div class="chosen-search"><input type="text" autocomplete="off" readonly=""></div><ul class="chosen-results"></ul></div></div>
+                              <span class="help-block">Select "Remove Assigned" to leave the Property Unassigned</span>
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <input type="hidden" name="propertyName" value="Sai Towers">
+                            <button type="input" name="submit" value="reassignProp" class="btn btn-success btn-icon"><i class="fa fa-check-square-o"></i> Save</button>
+                            <button type="button" class="btn btn-default btn-icon" data-dismiss="modal"><i class="fa fa-times-circle-o"></i> Cancel</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </li> -->
+            </ul>
+
+          <a routerLink="/manager/properties/view-lease/{{prop_id}}" routerLinkActive="active" class="btn btn-sm btn-success btn-block btn-icon"><i class="fa fa-file-text"></i> View Lease </a>
+         </div>
+        
+         <div *ngIf="isLeased == 0">
+          <div  class="alertMsg default">
+            <div class="msgIcon pull-left">
+              <i class="fa fa-warning"></i>
+            </div>`
+            
+            This Property is not  leased.
+          </div>
+          <a routerLink="/manager/properties/lease-property/{{prop_id}}" routerLinkActive="active" class="btn btn-sm btn-success btn-block btn-icon"><i class="fa fa-file-text"></i> Lease Property </a>
+         </div>
+        <h3>Property Files</h3>
+            <div class="alertMsg default mb-20">
+            <div class="msgIcon pull-left">
+              <i class="fa fa-info-circle"></i>
+            </div>
+            No Uploaded Files found.							</div>
+                    <a href="index.php?action=viewUploads&amp;propertyId=2" class="btn btn-sm btn-warning btn-block btn-icon"><i class="fa fa-file-o"></i> Property Uploads</a>
+        <a data-toggle="modal" href="#uploadFile" class="btn btn-sm btn-warning btn-block btn-icon"><i class="fa fa-upload"></i> Upload Property File</a>
+
+        <div class="modal fade" id="uploadFile" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><i class="fa fa-times"></i></span></button>
+                <h4 class="modal-title">Upload Property File</h4>
+              </div>
+              <form enctype="multipart/form-data" action="" method="post">
+                <div class="modal-body">
+                  <p>
+                    <small>
+                      Upload File types allowed: jpg, png, gif, txt, pdf, xls, xlsx, doc, docx, zip, rar<br>
+                      Max Upload File Size: 512 mb.
+                    </small>
+                  </p>
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="fileName">File Title</label>
+                        <input type="text" class="form-control" name="fileName" id="fileName" required="required" maxlength="50" value="">
+                        <span class="help-block">Short Title for the File.</span>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="fileDesc">File Description:</label>
+                        <input type="text" class="form-control" name="fileDesc" id="fileDesc" required="required" value="">
+                        <span class="help-block">Short description of the File.</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="file">Select File</label>
+                    <input type="file" id="file" name="file" required="required">
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <input type="hidden" name="propertyName" value="Soni">
+                  <button type="input" name="submit" value="uploadFile" class="btn btn-success btn-icon"><i class="fa fa-check-square-o"></i> Upload File</button>
+                  <button type="button" class="btn btn-default btn-icon" data-dismiss="modal"><i class="fa fa-times-circle-o"></i> Cancel</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <h3>Open Service Requests</h3>
+                      <div class="alertMsg default mb-20">
+            <div class="msgIcon pull-left">
+              <i class="fa fa-info-circle"></i>
+            </div>
+            No Active Service Requests found.							</div>
+                  </div>
+    </div>
+  </div>

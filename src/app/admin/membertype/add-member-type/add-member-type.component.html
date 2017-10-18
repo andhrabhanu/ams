@@ -1,0 +1,27 @@
+<div class="container">
+  <h2>Add Member Type</h2>
+  <form class="example-form" [formGroup]="memberForm" (ngSubmit)="onFormSubmit()">
+  
+  
+    <md-card class="example-card">
+  
+  
+  
+    <md-input-container class="example-full-width">
+      <input mdInput placeholder="Member Type" [formControl]="member_type">
+      
+    <md-error *ngIf="member_type.hasError('required')">
+     Member Type  is <strong>required</strong>
+      </md-error>
+    </md-input-container>
+
+  
+  
+  
+
+    <button md-raised-button type="submit"  [disabled]="!memberForm.valid">Add Member Type</button> 
+  </md-card>
+    <!-- </div> -->
+    </form>
+  </div>
+  

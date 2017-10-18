@@ -1,0 +1,23 @@
+<div class="container">
+  <h2>Add Bill Type</h2>
+  <form class="example-form" [formGroup]="billTypeForm" (ngSubmit)="onFormSubmit()">
+  
+  
+    <md-card class="example-card">
+  
+  
+  
+    <md-input-container class="example-full-width">
+      <input mdInput placeholder="Bill Type" [formControl]="billType">
+      
+    <md-error *ngIf="billType.hasError('required')">
+      Bill Type is <strong>required</strong>
+      </md-error>
+    </md-input-container>
+
+    <button md-raised-button type="submit"  [disabled]="!billTypeForm.valid">Add BillType</button> 
+  </md-card>
+    <!-- </div> -->
+    </form>
+  </div>
+  

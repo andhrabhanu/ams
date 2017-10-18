@@ -1,0 +1,69 @@
+<div class="container">
+    
+<h2>Manager Leased Properties</h2>
+
+<div class="example-container mat-elevation-z8">
+  <div class="example-header">
+    <md-input-container floatPlaceholder="never">
+      <input mdInput #filter placeholder="Filter Properties">
+    </md-input-container>
+  </div>
+
+  <md-table #table [dataSource]="dataSource">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- ID Column -->
+    <ng-container cdkColumnDef="id">
+      <md-header-cell *cdkHeaderCellDef> ID </md-header-cell>
+     <md-cell *cdkCellDef="let row"><a href="https://www.w3schools.com"> {{row.id}}</a> </md-cell>
+    </ng-container>
+
+  <!-- Property Column -->
+    <ng-container cdkColumnDef="property">
+      <md-header-cell *cdkHeaderCellDef> Property </md-header-cell>
+      <md-cell *cdkCellDef="let row">
+   
+      <a routerLink="/manager/properties/view-property/{{row.uniqId}}" routerLinkActive="active">{{row.property}}</a>
+
+      </md-cell>
+    </ng-container>
+
+    <ng-container cdkColumnDef="rent">
+      <md-header-cell *cdkHeaderCellDef> Rent </md-header-cell>
+      <md-cell *cdkCellDef="let row">{{row.rent}} </md-cell>
+    </ng-container>
+
+      <!--   <ng-container cdkColumnDef="uniqId">
+      <md-header-cell *cdkHeaderCellDef> uniqId </md-header-cell>
+      <md-cell *cdkCellDef="let row">
+      
+      
+        <a routerLink="/property/view-property/{{row.uniqId}}" routerLinkActive="active">{{row.property}}</a>
+
+        
+        
+        </md-cell>
+    </ng-container> -->
+
+
+
+        <!-- Tenant Column -->
+    <ng-container cdkColumnDef="tenant">
+      <md-header-cell *cdkHeaderCellDef> Tenant </md-header-cell>
+      <md-cell *cdkCellDef="let row"> {{row.tenant}} </md-cell>
+    </ng-container>
+
+  
+
+    <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
+    <md-row *cdkRowDef="let row; columns: displayedColumns;"></md-row>
+  </md-table>
+</div>
+</div>
+
+
+<!-- Copyright 2017 Google Inc. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->

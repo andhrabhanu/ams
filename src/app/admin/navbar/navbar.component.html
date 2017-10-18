@@ -1,0 +1,173 @@
+
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span> 
+        </button>
+        <a class="navbar-brand" href="#">TejoAMS - {{admin_name}} - - {{apartmentName}}</a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li><a routerLink="/admin/dashboard" routerLinkActive="active">Dashboard </a></li>
+ 
+          <!--Floors-->
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Floors
+            <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+            
+              <li><a routerLink="/admin/floors/add" routerLinkActive="active">Add Floor </a></li>
+              <li><a routerLink="/admin/floors/list" routerLinkActive="active">List</a></li>
+            </ul>
+          </li>
+
+          <!--Units-->
+          <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Units
+              <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+              
+                <li><a routerLink="/admin/units/add" routerLinkActive="active">Add Unit </a></li>
+                <li><a routerLink="/admin/units/list" routerLinkActive="active">List</a></li>
+              </ul>
+          </li>
+
+          <!--Owners-->
+          <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Owners
+              <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+              
+                <li><a routerLink="/admin/owners/add" routerLinkActive="active">Add Owner </a></li>
+                <li><a routerLink="/admin/owners/list" routerLinkActive="active">List</a></li>
+              </ul>
+          </li>
+
+           <!--Settings-->
+           <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Settings
+              <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+              
+                 <li> <a routerLink="/admin/member-type/add" routerLinkActive="active">Add Member Type </a></li>
+                 <li><a routerLink="/admin/member-type/list" routerLinkActive="active">List Member Types  </a></li>
+                 <li><a routerLink="/admin/year/add" routerLinkActive="active">Add Year  </a></li>
+                 <li><a routerLink="/admin/year/list" routerLinkActive="active"> List year </a></li>
+                 <li><a routerLink="/admin/month/add" routerLinkActive="active"> Add Month  </a></li>
+                 <li><a routerLink="/admin/month/list" routerLinkActive="active"> List Months </a></li>
+                 <li><a routerLink="/admin/billType/add" routerLinkActive="active"> Add BillType  </a></li>
+                 <li><a routerLink="/admin/billType/list" routerLinkActive="active"> List BillType  </a></li>
+                 <li><a routerLink="/admin/salary/add" routerLinkActive="active"> Add Employee Salary  </a></li>
+                 <li><a routerLink="/admin/salary/list" routerLinkActive="active"> List Salaries </a></li>
+              </ul>
+          </li>
+          
+          <!--Employees-->
+          <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Employees
+              <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+              
+                <li><a routerLink="/admin/employee/add" routerLinkActive="active">Add Employee </a></li>
+                <li><a routerLink="/admin/employee/list" routerLinkActive="active">List</a></li>
+              </ul>
+          </li>
+
+          <!--Bills-->
+          <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Bill
+              <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+              
+                <li><a routerLink="/admin/bill/add" routerLinkActive="active">Add Bill </a></li>
+                <li><a routerLink="/admin/bill/list" routerLinkActive="active">List</a></li>
+              </ul>
+          </li>
+
+           <!--Monthly Fund-->
+           <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Monthly Fund
+              <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+              
+                <li>
+                    <a routerLink="/admin/fund/check-monthly" routerLinkActive="active">Check MonthlyFund </a>
+                  </li>
+                <li>
+                    <a routerLink="/admin/fund/add-monthly" routerLinkActive="active">Add MonthlyFund</a>
+              
+                </li>
+                <li>
+                    <a routerLink="/admin/fund/list-monthly" routerLinkActive="active"> List MonthlyFunds </a>
+                    
+                </li>
+              </ul>
+          </li>
+
+          <!--Corpus Fund-->
+          <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Corpus Fund
+              <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+              
+                <li><a routerLink="/admin/corpus-fund/add" routerLinkActive="active">Add</a></li>
+                <li><a routerLink="/admin/corpus-fund/list" routerLinkActive="active">List</a></li>
+              </ul>
+          </li>
+
+           <!--Management-->
+           <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Management
+              <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+              
+                <li><a routerLink="/admin/management/add" routerLinkActive="active">Add</a></li>
+                <li><a routerLink="/admin/management/list" routerLinkActive="active">List</a></li>
+              </ul>
+          </li>
+
+           <!--Complaints-->
+           <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Complaints 
+               <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+              
+                <li><a routerLink="/admin/complaints/add" routerLinkActive="active">Add</a></li>
+                <li><a routerLink="/admin/complaints/list" routerLinkActive="active">Open</a></li>
+                <li><a routerLink="/admin/complaints/list-closed" routerLinkActive="active">Closed</a></li>
+                
+              </ul>
+          </li>
+
+
+           <!--Messages-->
+           <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Messages
+              <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+              
+                <li><a routerLink="/admin/message/send" routerLinkActive="active">Send</a></li>
+                <li><a routerLink="/admin/message/list" routerLinkActive="active">List</a></li>
+              </ul>
+          </li>
+
+          
+
+
+
+
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+          
+          <button (click)="onLogoutClick()">Logout</button>
+          
+          
+        </ul>
+        
+      </div>
+    </div>
+  </nav>

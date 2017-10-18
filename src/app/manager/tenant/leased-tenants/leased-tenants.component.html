@@ -1,0 +1,51 @@
+<div class="container">
+<h2>Leased Tenants</h2>
+<div class="example-container mat-elevation-z8">
+  <div class="example-header">
+    <md-input-container floatPlaceholder="never">
+      <input mdInput #filter placeholder="Filter Tenants">
+    </md-input-container>
+  </div>
+
+  <md-table #table [dataSource]="dataSource">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- ID Column -->
+    <ng-container cdkColumnDef="id">
+      <md-header-cell *cdkHeaderCellDef> ID </md-header-cell>
+     <md-cell *cdkCellDef="let row"><a href="https://www.w3schools.com"> {{row.id}}</a> </md-cell>
+    </ng-container>
+
+  <!-- Email Column -->
+    <ng-container cdkColumnDef="email">
+      <md-header-cell *cdkHeaderCellDef> Email </md-header-cell>
+      
+      <md-cell *cdkCellDef="let row"><a routerLink="/manager/tenants/view-tenant/{{row.uniqId}}" routerLinkActive="active">{{row.email}}</a> </md-cell> 
+      
+   
+      <!-- <a routerLink="/property/view-property/{{row.uniqId}}" routerLinkActive="active">{{row.property}}</a> -->
+
+      
+    </ng-container>
+
+    <!-- Phone Column -->
+    <ng-container cdkColumnDef="primary_phone">
+        <md-header-cell *cdkHeaderCellDef> Primary Phone </md-header-cell>
+       <md-cell *cdkCellDef="let row"> {{row.primary_phone}}</md-cell>
+      </ng-container>
+
+
+
+  
+
+    <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
+    <md-row *cdkRowDef="let row; columns: displayedColumns;"></md-row>
+  </md-table>
+</div>
+
+</div>
+<!-- Copyright 2017 Google Inc. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->

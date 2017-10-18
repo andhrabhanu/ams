@@ -1,0 +1,101 @@
+<div class="container">
+  <h3>Add Monthly Fund</h3>
+  
+   <md-card class="example-card">
+      <form (ngSubmit)="onSubmit()" #monthlyfundForm="ngForm">
+      
+
+          <div class="row">
+              <div class="form-group">
+              <angular2-multiselect [data]="dropdownList" [(ngModel)]="selectedItems"
+              [ngModelOptions]="{standalone: true}"
+             [settings]="dropdownSettings" 
+             (onSelect)="onItemSelect($event)" 
+             (onDeSelect)="OnItemDeSelect($event)"
+             (onSelectAll)="onSelectAll($event)"
+             (onDeSelectAll)="onDeSelectAll($event)"></angular2-multiselect>
+               </div> 
+
+
+
+            <div class="col-md-6">
+              <div class="form-group">
+                  <label for="month">Select Month</label>
+
+                  <select  class="form-control" id="month" required  [(ngModel)]="model.month" name="month" #month="ngModel">         
+                    <option *ngFor="let month of months" value= {{month._id}}>{{month.month}}</option>
+                  </select>
+
+
+
+                    <div *ngIf="month.errors && (month.dirty || month.touched)" class="alert alert-danger">
+                      <div [hidden]="!month.errors.required">
+                        Month is required!
+                      </div>
+                    </div>
+              <div>
+            </div>
+            </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                    <label for="year">Select year</label>
+                    <select  class="form-control" id="year" required  [(ngModel)]="model.year" name="year" #year="ngModel">         
+                      <option *ngFor="let year of years" value= {{year._id}}>{{year.year}}</option>
+                    </select>
+                    <div *ngIf="year.errors && (year.dirty || year.touched)" class="alert alert-danger">
+                            <div [hidden]="!year.errors.required">
+                              Year is required!
+                            </div>
+                    </div>
+                  
+        
+        
+              </div>
+            </div>
+            </div>
+            <div class="row">
+            <div class="col-md-6">
+            <div class="form-group">
+              <label for="password">Amount</label>
+              <input type="number" class="form-control" id="amount" [(ngModel)]="model.amount" name="amount" #amount="ngModel">
+              <div *ngIf="amount.errors && (amount.dirty || amount.touched)" class="alert alert-danger">
+                <div [hidden]="!amount.errors.required">
+                      Amount is required!
+                </div>
+               </div>     
+              </div>
+            </div>
+      
+      
+      
+            
+            <div class="col-md-6">
+            <div class="form-group">
+              <label for="mobile">Purpose</label>
+              <input type="text" class="form-control" id="purpose"  [(ngModel)]="model.purpose" name="purpose" #purpose="ngModel">
+              
+                <div *ngIf="purpose.errors && (purpose.dirty || purpose.touched)" class="alert alert-danger">
+                    <div [hidden]="!purpose.errors.required">
+                        Purpose is required!
+                    </div>
+                </div>
+      
+      
+                
+      
+            </div>
+            </div>
+       
+      
+            </div>
+      
+    
+      
+            <button [disabled]="!monthlyfundForm.form.valid"  type="submit">Add Monthly Fund</button>
+      </form>   
+   </md-card>
+</div>
+  
+
+

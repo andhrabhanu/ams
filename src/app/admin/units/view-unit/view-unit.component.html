@@ -1,0 +1,30 @@
+<div class="container">
+  <h2>View Unit</h2>
+  <form class="example-form" [formGroup]="unitForm" (ngSubmit)="updateUnit()">
+  
+  
+    <md-card class="example-card">
+    <md-select formControlName="floor_no" placeholder="Floor">
+      <md-option *ngFor="let floor of floors" value= {{floor.floor_no}}>{{floor.floor_no}}</md-option>
+      
+      
+    </md-select>
+
+      
+    <md-input-container class="example-full-width">
+      <input mdInput placeholder="Unit" [formControl]="unit_no">
+      
+    <md-error *ngIf="unit_no.hasError('required')">
+      Unit No is <strong>required</strong>
+      </md-error>
+    </md-input-container>
+  
+  
+  
+
+    <button md-raised-button type="submit"  [disabled]="!unitForm.valid">Update Unit</button> 
+  </md-card>
+    <!-- </div> -->
+    </form>
+  </div>
+  

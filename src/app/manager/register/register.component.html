@@ -1,0 +1,31 @@
+
+  <h3>Create Account</h3>
+  <form class="example-form" [formGroup]="registerForm" (ngSubmit)="onRegisterSubmit()">
+    
+  
+    <md-card class="example-card">
+      <md-input-container class="example-full-width">
+        <input mdInput placeholder="Name" [formControl]="name">
+        
+      <md-error *ngIf="name.hasError('required')">
+          Name is <strong>required</strong>
+        </md-error>
+      </md-input-container>
+    <md-input-container class="example-full-width">
+        <input mdInput placeholder="Email" [formControl]="email">
+        
+      <md-error *ngIf="email.hasError('required')">
+          Email is <strong>required</strong>
+        </md-error>
+      </md-input-container>
+      <md-input-container class="example-full-width">
+        <input mdInput placeholder="Password" [formControl]="password">
+        
+      <md-error *ngIf="password.hasError('required')">
+          Password is <strong>required</strong>
+        </md-error>
+      </md-input-container>
+  
+      <button md-raised-button type="submit"  [disabled]="!registerForm.valid">Register</button> 
+    </md-card>    
+  </form>

@@ -1,0 +1,48 @@
+<div class="container">
+  <h2>Add Service Resource</h2>
+  <form class="example-form" [formGroup]="resourceForm" (ngSubmit)="onFormSubmit()">
+    
+  
+    <md-card class="example-card">
+  
+  
+  
+    <md-input-container class="example-full-width">
+      <input mdInput placeholder="Name" [formControl]="name">
+      
+    <md-error *ngIf="name.hasError('required')">
+        Name is <strong>required</strong>
+      </md-error>
+    </md-input-container>
+
+    <md-select formControlName="serviceCatId" placeholder="Category">
+      <md-option disabled >Select</md-option>
+      <md-option *ngFor="let category of serviceCategories" value={{category._id}}>
+        {{category.name}}
+      </md-option>
+    </md-select>
+   <md-error *ngIf="serviceCatId.hasError('required')">
+    Category <strong>required</strong>
+    </md-error> 
+  
+    
+  
+    <md-input-container class="example-full-width">
+       <input mdInput placeholder="Mobile" [formControl]="mobile">
+        <md-error *ngIf="mobile.hasError('required')">
+        Mobile is <strong>required</strong>
+        </md-error>
+    </md-input-container>
+  
+    <md-input-container class="example-full-width">
+       <textarea mdInput placeholder="Skill" [formControl]="skill"></textarea>
+        
+    </md-input-container>
+  
+   
+     
+      <button md-raised-button type="submit"  [disabled]="!resourceForm.valid">Submit</button> 
+  </md-card>
+    <!-- </div> -->
+    </form>
+  </div>

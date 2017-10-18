@@ -1,0 +1,5 @@
+<app-navbar-superadmin *ngIf="superAdminService.loggedIn()"></app-navbar-superadmin>
+
+		<app-login *ngIf="!superAdminService.loggedIn()"></app-login>
+	  <router-outlet *ngIf="superAdminService.loggedIn()"></router-outlet>	
+	

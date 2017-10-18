@@ -1,0 +1,75 @@
+<div class="container">
+<h2>Add Tenant</h2>
+<form class="example-form" [formGroup]="tenantForm" (ngSubmit)="onFormSubmit()">
+
+<md-card class="example-card">
+
+
+
+<md-input-container class="example-full-width">
+  <input mdInput placeholder="FirstName" [formControl]="firstName">
+  
+   <md-error *ngIf="firstName.hasError('required')">
+    First Name is <strong>required</strong>
+   </md-error>
+</md-input-container>
+
+<md-input-container class="example-full-width">
+  <input mdInput placeholder="LastName" [formControl]="lastName">
+  
+   <md-error *ngIf="lastName.hasError('required')">
+    Last Name is <strong>required</strong>
+   </md-error>
+</md-input-container>
+
+<md-input-container class="example-full-width">
+  <input mdInput placeholder="Email" [formControl]="email">
+  
+   <md-error *ngIf="email.hasError('required')">
+    Email is <strong>required</strong>
+   </md-error>
+</md-input-container>
+
+   <!-- <md-input-container class="example-full-width">
+  <input mdInput placeholder="Email" [formControl]="email">
+  <md-error *ngIf="email.hasError('pattern')">
+    Please enter a valid email address
+  </md-error>
+  <md-error *ngIf="email.hasError('required')">
+    Email is <strong>required</strong>
+  </md-error>
+</md-input-container> -->
+
+<md-input-container class="example-full-width">
+  <input type="password" mdInput placeholder="Password" [formControl]="password">
+  
+   <md-error *ngIf="password.hasError('required')">
+    Password is <strong>required</strong>
+   </md-error>
+</md-input-container>
+
+<md-input-container class="example-full-width">
+  <input  mdInput placeholder="Primary Phone" [formControl]="primary_phone">
+  
+   <md-error *ngIf="primary_phone.hasError('required')">
+    Primary Phone is <strong>required</strong>
+   </md-error>
+</md-input-container>
+
+<md-input-container class="example-full-width">
+  <input  mdInput placeholder="Alternate Phone" [formControl]="alt_phone">
+  
+   <md-error *ngIf="alt_phone.hasError('required')">
+    Alternate Phone is <strong>required</strong>
+   </md-error>
+</md-input-container>
+
+
+
+
+ 
+  <button md-raised-button type="submit"  [disabled]="!tenantForm.valid">Submit</button> 
+</md-card>
+<!-- </div> -->
+</form>
+</div>

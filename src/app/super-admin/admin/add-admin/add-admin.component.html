@@ -1,0 +1,59 @@
+<div class="container">
+<h2>Add Admin</h2>
+<form class="example-form" [formGroup]="adminForm" (ngSubmit)="onFormSubmit()">
+
+
+  <md-card class="example-card">
+
+
+
+  <md-input-container class="example-full-width">
+    <input mdInput placeholder="Name" [formControl]="name">
+    
+  <md-error *ngIf="name.hasError('required')">
+      Name is <strong>required</strong>
+    </md-error>
+  </md-input-container>
+
+    <md-input-container class="example-full-width">
+    <input mdInput placeholder="Email" [formControl]="email">
+    <!-- <md-error *ngIf="email.hasError('pattern')">
+      Please enter a valid email address
+    </md-error> -->
+    <md-error *ngIf="email.hasError('required')">
+      Email is <strong>required</strong>
+    </md-error>
+  </md-input-container>
+
+
+
+  <md-input-container class="example-full-width">
+    <input mdInput type="password" placeholder="Password" [formControl]="password">
+    <md-error *ngIf="password.hasError('required')">
+      Password is <strong>required</strong>
+    </md-error>
+  </md-input-container>
+
+  <md-select formControlName="apartment" placeholder="Apartment">
+    <md-option disabled >Select</md-option>
+    <md-option *ngFor="let apartment of apartments" value={{apartment._id}}>{{apartment.name}}</md-option>
+    
+  
+  </md-select>
+      <md-error *ngIf="apartment.hasError('required')">
+    Apartment is <strong>required</strong>
+    </md-error>
+
+    <md-input-container class="example-full-width">
+      <input mdInput placeholder="Monthly Fund" [formControl]="monthlyFund">
+      
+    <md-error *ngIf="monthlyFund.hasError('required')">
+        Monthly Fund is <strong>required</strong>
+      </md-error>
+    </md-input-container>
+    <br>
+    <br>
+    <button md-raised-button type="submit"  [disabled]="!adminForm.valid">Add Admin</button> 
+    </md-card>
+  </form>
+</div>

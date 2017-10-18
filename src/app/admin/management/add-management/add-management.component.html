@@ -1,0 +1,81 @@
+<div class="container">
+  <h2>Add Management</h2>
+  <form class="example-form" [formGroup]="employeeForm" (ngSubmit)="onFormSubmit()">
+     
+  
+    <md-card class="example-card">
+   
+    <md-input-container class="example-full-width">
+        <input mdInput placeholder="Member Name" [formControl]="name">
+      <md-error *ngIf="name.hasError('required')">
+        Employee Name is <strong>required</strong>
+        </md-error>
+    </md-input-container>   
+    
+    <md-input-container class="example-full-width">
+      <input mdInput placeholder=" Email" [formControl]="email">
+    <md-error *ngIf="email.hasError('required')">
+      Email is <strong>required</strong>
+      </md-error>
+  </md-input-container> 
+  
+  <md-input-container class="example-full-width">
+    <input mdInput placeholder="Password" [formControl]="password">
+  <md-error *ngIf="password.hasError('required')">
+    Password is <strong>required</strong>
+    </md-error>
+</md-input-container>
+
+<md-input-container class="example-full-width">
+<input mdInput placeholder="Mobile" [formControl]="mobile">
+<md-error *ngIf="mobile.hasError('required')">
+  Mobile is <strong>required</strong>
+</md-error>
+</md-input-container>
+
+   <md-select formControlName="designation" placeholder="Designation">
+      <md-option disabled >Select</md-option>
+      <md-option *ngFor="let designation of designations" value= {{designation._id}}>{{designation.member_type}}</md-option>
+  </md-select>
+    <md-error *ngIf="designation.hasError('required')">
+      Designation is <strong>required</strong>
+      </md-error>
+
+      <md-input-container class="example-full-width">
+        <textarea mdInput placeholder="Address" [formControl]="address"></textarea>
+         <md-error *ngIf="address.hasError('required')">
+          Address is <strong>required</strong>
+         </md-error>
+     </md-input-container>
+
+
+     <md-input-container>
+      <input mdInput [mdDatepicker]="picker" [formControl]="joining_date" placeholder="Joining Date">
+      <button mdSuffix [mdDatepickerToggle]="picker"></button>
+      <md-error *ngIf="joining_date.hasError('required')">
+      Joining Date is <strong>required</strong>
+      </md-error>	
+    </md-input-container>
+    <md-datepicker #picker></md-datepicker>
+<br>
+    <md-input-container>
+      <input mdInput [mdDatepicker]="picker1" [formControl]="ending_date" placeholder="Ending Date">
+      <button mdSuffix [mdDatepickerToggle]="picker1"></button>
+     
+    </md-input-container>
+    <md-datepicker #picker1></md-datepicker>
+    
+
+    <br>
+   
+  
+    
+
+  
+   
+     
+      <button md-raised-button type="submit"  [disabled]="!employeeForm.valid">Add Member</button> 
+  </md-card>
+    <!-- </div> -->
+    </form>
+  </div>

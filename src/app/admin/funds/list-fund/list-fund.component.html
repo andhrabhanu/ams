@@ -1,0 +1,62 @@
+<div class="container">
+  <h2>List Fund</h2>
+  <div class="example-container mat-elevation-z8">
+    <div class="example-header">
+      <md-input-container floatPlaceholder="never">
+        <input mdInput #filter placeholder="Filter Funds">
+      </md-input-container>
+    </div>
+  
+    <md-table #table [dataSource]="dataSource">
+  
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+  
+      <!-- ID Column -->
+      <ng-container cdkColumnDef="id">
+        <md-header-cell *cdkHeaderCellDef> ID </md-header-cell>
+       <md-cell *cdkCellDef="let row"><a href="https://www.w3schools.com"> {{row.id}}</a> </md-cell>
+      </ng-container>
+  
+    <!-- Property Column -->
+    <ng-container cdkColumnDef="owner">
+        <md-header-cell *cdkHeaderCellDef> Owner </md-header-cell>
+        <md-cell *cdkCellDef="let row">
+     
+        <!-- <a routerLink="#" routerLinkActive="active">{{row.floor_no}}</a> -->
+        <a routerLink="/admin/units/view-unit/{{row.uniqId}}" routerLinkActive="active">{{row.owner}}</a>
+        </md-cell>
+    </ng-container>
+
+    <ng-container cdkColumnDef="date">
+        <md-header-cell *cdkHeaderCellDef> Date </md-header-cell>
+      <!-- <a routerLink="#" routerLinkActive="active">{{row.floor_no}}</a> -->
+      <md-cell *cdkCellDef="let row"> {{ row.date | date:'dd-MMMM-yyyy' }} </md-cell>
+    </ng-container>
+
+    <ng-container cdkColumnDef="month">
+      <md-header-cell *cdkHeaderCellDef> Month </md-header-cell>
+    <!-- <a routerLink="#" routerLinkActive="active">{{row.floor_no}}</a> -->
+    <md-cell *cdkCellDef="let row"> {{row.month}} </md-cell>
+  </ng-container>
+  <ng-container cdkColumnDef="year">
+    <md-header-cell *cdkHeaderCellDef>Year </md-header-cell>
+  <md-cell *cdkCellDef="let row"> {{row.year}} </md-cell>
+</ng-container>
+
+<ng-container cdkColumnDef="amount">
+  <md-header-cell *cdkHeaderCellDef>Amount </md-header-cell>
+<md-cell *cdkCellDef="let row"> {{row.amount}} </md-cell>
+</ng-container>
+
+<ng-container cdkColumnDef="purpose">
+  <md-header-cell *cdkHeaderCellDef>Purpose </md-header-cell>
+<md-cell *cdkCellDef="let row"> {{row.purpose}} </md-cell>
+</ng-container>
+  
+
+    <md-header-row *cdkHeaderRowDef="displayedColumns"></md-header-row>
+      <md-row *cdkRowDef="let row; columns: displayedColumns;"></md-row>
+    </md-table>
+  </div>
+  </div>

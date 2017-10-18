@@ -1,0 +1,23 @@
+<div class="container">
+  <h2>Add Year</h2>
+  <form class="example-form" [formGroup]="yearForm" (ngSubmit)="onFormSubmit()">
+  
+  
+    <md-card class="example-card">
+  
+  
+  
+    <md-input-container class="example-full-width">
+      <input mdInput placeholder="year" [formControl]="year">
+      
+    <md-error *ngIf="year.hasError('required')">
+      Year is <strong>required</strong>
+      </md-error>
+    </md-input-container>
+
+    <button md-raised-button type="submit"  [disabled]="!yearForm.valid">Add Year</button> 
+  </md-card>
+    <!-- </div> -->
+    </form>
+  </div>
+  

@@ -1,0 +1,82 @@
+<script src="http://tejoma.com/reside/js/dataTables.js"></script>
+<div class="container page_block noTopBorder">
+  <hr class="mt-0 mb-0">
+
+          <h3>View Resource</h3>
+  
+      <div class="row">
+        <div class="col-md-4">
+          <div class="profileBox">
+            <div class="cover">
+            <!--   <div class="profilePic">
+                <img src="../avatars/userDefault.png" class="publicPic">
+              </div> -->
+            </div>
+
+            <div class="profileBody">
+              <h1>
+                {{rname}}								</h1>
+              <p class="lead">{{rmobile}}</p>
+              <p>{{category}}</p>
+            </div>
+          </div>
+          
+          
+      </div>
+        <div class="col-md-8">
+          <div class="tabs mt-0">
+              <md-tab-group>
+                  <md-tab label="Info">
+                      <h3>Manage the Resource Info</h3>
+                      <hr>
+                      <form class="example-form" [formGroup]="resourceForm" (ngSubmit)="UpdateResouceinfo()"> 
+                          <md-input-container class="example-full-width">
+                              <input mdInput placeholder="Name" [formControl]="name">
+                              
+                              <md-error *ngIf="name.hasError('required')">
+                                Name is <strong>required</strong>
+                              </md-error>
+                          </md-input-container>
+
+                          <md-input-container class="example-full-width">
+                              <input mdInput placeholder="mobile" [formControl]="mobile">
+                              
+                              <md-error *ngIf="mobile.hasError('required')">
+                                Mobile is <strong>required</strong>
+                              </md-error>
+                          </md-input-container>
+                          <button md-fab type="submit"  [disabled]="!resourceForm.valid"><md-icon>check</md-icon></button>
+                          <br>
+                        </form>
+                  </md-tab>
+
+                  <!-- <md-tab label="Email">
+                      <h3>Change the Tenant's Account Email</h3>
+                      <hr>
+                  
+
+                      <br>
+
+                  </md-tab>
+                  <md-tab label="Password">
+                      <h3>Change the Tenant's Account Password</h3>
+                    
+                  </md-tab>
+
+                  <md-tab label="Account Status">
+                      <h3>Change Tenants Account Status</h3>
+                      <hr>
+                      <p>The Tenant's Account Status can only be changed when they do NOT have an Active Property Lease.
+                         Resident Accounts can be changed at any time, regardless of their Lease status.</p>
+
+                  </md-tab> -->
+              
+               
+                  
+                </md-tab-group>
+    
+          </div>
+        </div>
+      </div>
+  
+    </div>
